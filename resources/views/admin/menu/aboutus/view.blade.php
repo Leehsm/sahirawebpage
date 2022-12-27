@@ -20,21 +20,25 @@ About Us
   <table class="table table-success table-striped">
     <thead>
       <tr>
+        <th scope="col">Image</th>
         <th scope="col">Description</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
+      @foreach($aboutus as $data)
       <tr>
-        <td scope="row">1</td>  
+        <td width="15%"><img src="{{ asset($data->image) }}" style="width: 100px; height: 100px;"></td>  
+        <td>{{ $data->description }}</td>  
         <td width="15%">   
-          <a href="#" class="btn btn-info btn-sm" title="Edit Data">
+          <a href="{{ route('aboutus.edit', $data->id) }}" class="btn btn-info btn-sm" title="Edit Data">
             Edit 
           </a>
-          <a href="#" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
+          <a href="{{ route('aboutus.delete', $data->id) }}" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
             Delete
           </a>
       </td>
+      @endforeach
       </tr>
     </tbody>
   </table>
