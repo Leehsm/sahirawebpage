@@ -20,7 +20,8 @@ class BackendController extends Controller
     //About Us
     Public function AboutUsView(){
 
-        return view('admin.menu.aboutus.view');
+        $aboutus = AboutUs::latest()->get();
+        return view('admin.menu.aboutus.view', compact('aboutus'));
 
     }
 
@@ -30,22 +31,92 @@ class BackendController extends Controller
 
     }
 
-    Public function AboutUsStore(){
+    Public function AboutUsStore(Request $request){
+        
+        $image = $request->file('image');
+    	$name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+    	Image::make($image)->save('upload/'.$name_gen);
+    	$save_url = 'upload/'.$name_gen;
+
+	    $aboutus_id = AboutUs::insertGetId([
+            'description' => $request->description,
+            'image' => $save_url,
+            // 'created_by' => Auth::id(),
+            'created_at' => Carbon::now(),
+    	]);
+
+	    $notification = array(
+			'message' => 'About Us Inserted Successfully',
+			'alert-type' => 'success'
+		);
+
+		return redirect()->route('aboutus.all')->with($notification);
+    }
+
+    Public function AboutUsEdit($id){
+        
+        $aboutus = AboutUs::findOrFail($id);
+        return view('admin.menu.aboutus.edit', compact('aboutus'));
+    }
+
+    Public function AboutUsUpdate(Request $request){
+        
+        $aboutus_id = $request->id;
+        $old_img = $request->old_image;
+
+        if($request->file('image')){
+        
+            unlink($old_img);
+            $image = $request->file('image');
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->save('upload/'.$name_gen);
+            $save_url = 'upload/'.$name_gen;
+
+            AboutUs::findOrFail($aboutus_id)->update([
+                'description' => $request->description,
+                'brand_image' => $save_url,
+                'updated_at' => Carbon::now(),
+            ]);
+
+            $notification = array(
+                'message' => 'About Us Updated Successfully',
+                'alert-type' => 'info'
+            );
+
+            return redirect()->route('aboutus.all')->with($notification);
+
+        }else{
+
+            AboutUs::findOrFail($aboutus_id)->update([
+                'description' => $request->description,
+                'updated_at' => Carbon::now(),
+            ]);
+
+            $notification = array(
+                'message' => 'About Us Updated Successfully',
+                'alert-type' => 'info'
+            );
+
+            return redirect()->route('aboutus.all')->with($notification);
+        }
         
     }
 
-    Public function AboutUsEdit(){
+    Public function AboutUsDelete($id){
         
-        return view('admin.menu.aboutus.view');
-        
-    }
+        $aboutus = AboutUs::findOrFail($id);
+        $img = $aboutus->image;
+        unlink($img);
 
-    Public function AboutUsUpdate(){
-        
-    }
+        AboutUs::findOrFail($id)->delete();
 
-    Public function AboutUsDelete(){
-        
+        $notification = array(
+            'message' => 'About Us Deleted Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
+
     }
  
     //Blog
