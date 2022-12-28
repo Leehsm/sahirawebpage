@@ -18,6 +18,34 @@ Blogs
     </div>
   </div>
 
-  <canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="546" height="230" style="display: block; width: 546px; height: 230px;"></canvas>
+  <table class="table table-success table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Title</th>
+        <th scope="col">Date</th>
+        <th scope="col">Description</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach($blog as $data)
+      <tr>
+        <td width="15%"><img src="{{ asset($data->image) }}" style="width: 100px; height: 100px;"></td> 
+        <td width="15%">{{ $data->title }}</td> 
+        <td width="15%">{{ $data->date }}</td>  
+        <td>{{ $data->description }}</td>  
+        <td width="15%">   
+          <a href="{{ route('blog.edit', $data->id) }}" class="btn btn-info btn-sm" title="Edit Data">
+            Edit 
+          </a>
+          <a href="{{ route('blog.delete', $data->id) }}" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
+            Delete
+          </a>
+        </td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
 </main>
 @endsection
