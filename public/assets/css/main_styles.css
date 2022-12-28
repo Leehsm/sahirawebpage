@@ -51,6 +51,10 @@ COLOR PALETTE
 	margin: 0;
 	padding: 0;
 }
+html 
+{
+	scroll-behavior: smooth;
+}
 body
 {
 	font-family: 'Poppins', sans-serif;
@@ -1466,6 +1470,8 @@ section
 {
 	height: 255px;
 	width: 100%;
+	margin-top: 17px;
+	margin-bottom: 17px;
 }
 .blog_background
 {
