@@ -74,7 +74,7 @@ class BackendController extends Controller
 
             AboutUs::findOrFail($aboutus_id)->update([
                 'description' => $request->description,
-                'brand_image' => $save_url,
+                'image' => $save_url,
                 'updated_at' => Carbon::now(),
             ]);
 
@@ -122,7 +122,8 @@ class BackendController extends Controller
     //Blog
     Public function BlogView(){
 
-        return view('admin.menu.blog.view');
+        $blog = Blog::latest()->get();
+        return view('admin.menu.blog.view', compact('blog'));
 
     }
 
@@ -132,28 +133,106 @@ class BackendController extends Controller
 
     }
 
-    Public function BlogStore(){
+    Public function BlogStore(Request $request){
+
+        $image = $request->file('image');
+    	$name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+    	Image::make($image)->save('upload/'.$name_gen);
+    	$save_url = 'upload/'.$name_gen;
+
+	    $blog_id = Blog::insertGetId([
+            'title' => $request->title,
+            'date' => $request->date,
+            'description' => $request->description,
+            'image' => $save_url,
+            // 'created_by' => Auth::id(),
+            'created_at' => Carbon::now(),
+    	]);
+
+	    $notification = array(
+			'message' => 'Blog Inserted Successfully',
+			'alert-type' => 'success'
+		);
+
+		return redirect()->route('blog.all')->with($notification);
         
     }
 
-    Public function BlogEdit(){
+    Public function BlogEdit($id){
         
-        return view('admin.menu.blog.view');
-        
-    }
-
-    Public function BlogUpdate(){
+        $blog = Blog::findOrFail($id);
+        return view('admin.menu.blog.edit', compact('blog'));
         
     }
 
-    Public function BlogDelete(){
+    Public function BlogUpdate(Request $request){
         
+        $blog_id = $request->id;
+        $old_img = $request->old_image;
+
+        if($request->file('image')){
+        
+            unlink($old_img);
+            $image = $request->file('image');
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->save('upload/'.$name_gen);
+            $save_url = 'upload/'.$name_gen;
+
+            Blog::findOrFail($blog_id)->update([
+                'title' => $request->title,
+                'date' => $request->date,
+                'description' => $request->description,
+                'image' => $save_url,
+                'updated_at' => Carbon::now(),
+            ]);
+
+            $notification = array(
+                'message' => 'Blog Updated Successfully',
+                'alert-type' => 'info'
+            );
+
+            return redirect()->route('blog.all')->with($notification);
+
+        }else{
+
+            Blog::findOrFail($blog_id)->update([
+                'title' => $request->title,
+                'date' => $request->date,
+                'description' => $request->description,
+                'updated_at' => Carbon::now(),
+            ]);
+
+            $notification = array(
+                'message' => 'Blog Updated Successfully',
+                'alert-type' => 'info'
+            );
+
+            return redirect()->route('blog.all')->with($notification);
+        }
+
+    }
+
+    Public function BlogDelete($id){
+        
+        $blog = Blog::findOrFail($id);
+        $img = $blog->image;
+        unlink($img);
+
+        Blog::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Blog Deleted Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
     }
 
     //Contact Us
     Public function ContactUsView(){
 
-        return view('admin.menu.contactus.view');
+        $contactus = ContactUs::latest()->get();
+        return view('admin.menu.contactus.view', compact('contactus'));
 
     }
 
@@ -163,28 +242,106 @@ class BackendController extends Controller
 
     }
 
-    Public function ContactUsStore(){
+    Public function ContactUsStore(Request $request){
+
+        $image = $request->file('image');
+    	$name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+    	Image::make($image)->save('upload/'.$name_gen);
+    	$save_url = 'upload/'.$name_gen;
+
+	    $contactus_id = ContactUs::insertGetId([
+            'email' => $request->email,
+            'phone_1' => $request->phone1,
+            'phone_2' => $request->phone2,
+            'image' => $save_url,
+            // 'created_by' => Auth::id(),
+            'created_at' => Carbon::now(),
+    	]);
+
+	    $notification = array(
+			'message' => 'Contact Us Inserted Successfully',
+			'alert-type' => 'success'
+		);
+
+		return redirect()->route('contactus.all')->with($notification);
         
     }
 
-    Public function ContactUsEdit(){
+    Public function ContactUsEdit($id){
         
-        return view('admin.menu.contactus.view');
-        
-    }
-
-    Public function ContactUsUpdate(){
+        $contactus = ContactUs::findOrFail($id);
+        return view('admin.menu.contactus.edit', compact('contactus'));
         
     }
 
-    Public function ContactUsDelete(){
+    Public function ContactUsUpdate(Request $request){
         
+        $contactus_id = $request->id;
+        $old_img = $request->old_image;
+
+        if($request->file('image')){
+        
+            unlink($old_img);
+            $image = $request->file('image');
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->save('upload/'.$name_gen);
+            $save_url = 'upload/'.$name_gen;
+
+            ContactUs::findOrFail($contactus_id)->update([
+                'email' => $request->email,
+                'phone_1' => $request->phone1,
+                'phone_2' => $request->phone2,
+                'image' => $save_url,
+                'updated_at' => Carbon::now(),
+            ]);
+
+            $notification = array(
+                'message' => 'Contact Us Updated Successfully',
+                'alert-type' => 'info'
+            );
+
+            return redirect()->route('contactus.all')->with($notification);
+
+        }else{
+
+            ContactUs::findOrFail($contactus_id)->update([
+                'email' => $request->email,
+                'phone_1' => $request->phone1,
+                'phone_2' => $request->phone2,
+                'updated_at' => Carbon::now(),
+            ]);
+
+            $notification = array(
+                'message' => 'Contact Us Updated Successfully',
+                'alert-type' => 'info'
+            );
+
+            return redirect()->route('contactus.all')->with($notification);
+        }
+
+    }
+
+    Public function ContactUsDelete($id){
+        
+        $contactus = ContactUs::findOrFail($id);
+        $img = $aboutus->image;
+        unlink($img);
+
+        ContactUs::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Contact Us Deleted Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
     }
 
     //FAQ
     Public function FAQView(){
 
-        return view('admin.menu.faq.view');
+        $faq = FAQ::latest()->get();
+        return view('admin.menu.faq.view', compact('faq'));
 
     }
 
@@ -194,28 +351,67 @@ class BackendController extends Controller
 
     }
 
-    Public function FAQStore(){
+    Public function FAQStore(Request $request){
+
+	    $faq_id = FAQ::insertGetId([
+            'question' => $request->question,
+            'answer' => $request->answer,
+            'created_at' => Carbon::now(),
+    	]);
+
+	    $notification = array(
+			'message' => 'FAQ Inserted Successfully',
+			'alert-type' => 'success'
+		);
+
+		return redirect()->route('faq.all')->with($notification);
         
     }
 
-    Public function FAQEdit(){
+    Public function FAQEdit($id){
         
-        return view('admin.menu.faq.view');
-        
-    }
-
-    Public function FAQUpdate(){
+        $faq = FAQ::findOrFail($id);
+        return view('admin.menu.faq.edit', compact('faq'));
         
     }
 
-    Public function FAQDelete(){
+    Public function FAQUpdate(Request $request){
+
+        $faq_id = $request->id;
+
+        FAQ::findOrFail($faq_id)->update([
+            'question' => $request->question,
+            'answer' => $request->answer,
+            'updated_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'FAQ Updated Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->route('faq.all')->with($notification);
+
+    }
+
+    Public function FAQDelete($id){
+
+        FAQ::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'FAQ Deleted Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
         
     }
 
     //Membership
     Public function MembershipView(){
 
-        return view('admin.menu.membership.view');
+        $membership = Membership::latest()->get();
+        return view('admin.menu.membership.view', compact('membership'));
 
     }
 
@@ -225,28 +421,73 @@ class BackendController extends Controller
 
     }
 
-    Public function MembershipStore(){
+    Public function MembershipStore(Request $request){
+        
+        $membership_id = Membership::insertGetId([
+            'name' => $request->name,
+            'birthdate' => $request->dob,
+            'phonenum' => $request->phone,
+            'email' => $request->email,
+            'address' => $request->address,
+            'created_at' => Carbon::now(),
+    	]);
+
+	    $notification = array(
+			'message' => 'Membership Inserted Successfully',
+			'alert-type' => 'success'
+		);
+
+		return redirect()->route('membership.all')->with($notification);
+
+    }
+
+    Public function MembershipEdit($id){
+
+        $membership = Membership::findOrFail($id);
+        return view('admin.menu.mwmbership.edit', compact('membership'));
         
     }
 
-    Public function MembershipEdit(){
-        
-        return view('admin.menu.mwmbership.view');
+    Public function MembershipUpdate(Request $request){
+
+        $membership_id = $request->id;
+
+        Membership::findOrFail($membership_id)->update([
+            'name' => $request->name,
+            'birthdate' => $request->dob,
+            'phonenum' => $request->phone,
+            'email' => $request->email,
+            'address' => $request->address,
+            'updated_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Membership Updated Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->route('membership.all')->with($notification);
         
     }
 
-    Public function MembershipUpdate(){
-        
-    }
+    Public function MembershipDelete($id){
 
-    Public function MembershipDelete(){
+        Membership::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Membership Deleted Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
         
     }
 
     //Our Product
     Public function OurProductView(){
 
-        return view('admin.menu.ourproduct.view');
+        $ourproduct = OurProduct::latest()->get();
+        return view('admin.menu.ourproduct.view', compact('ourproduct'));
 
     }
 
@@ -256,21 +497,92 @@ class BackendController extends Controller
 
     }
 
-    Public function OurProductStore(){
+    Public function OurProductStore(Request $request){
+
+        $image = $request->file('image');
+    	$name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+    	Image::make($image)->save('upload/'.$name_gen);
+    	$save_url = 'upload/'.$name_gen;
+
+	    $ourproduct_id = OurProduct::insertGetId([
+            'name' => $request->name,
+            'description' => $request->description,
+            'image' => $save_url,
+            // 'created_by' => Auth::id(),
+            'created_at' => Carbon::now(),
+    	]);
+
+	    $notification = array(
+			'message' => 'Our Product Inserted Successfully',
+			'alert-type' => 'success'
+		);
+
+		return redirect()->route('ourproduct.all')->with($notification);        
         
     }
 
-    Public function OurProductEdit(){
+    Public function OurProductEdit($id){
         
-        return view('admin.menu.ourproduct.view');
-        
-    }
-
-    Public function OurProductUpdate(){
+        $ourproduct = OurProduct::findOrFail($id);
+        return view('admin.menu.ourproduct.edit', compact('ourproduct'));
         
     }
 
-    Public function OurProductDelete(){
+    Public function OurProductUpdate(Request $request){
+
+        $ourproduct_id = $request->id;
+        $old_img = $request->old_image;
+
+        if($request->file('image')){
         
+            unlink($old_img);
+            $image = $request->file('image');
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->save('upload/'.$name_gen);
+            $save_url = 'upload/'.$name_gen;
+
+            OurProduct::findOrFail($ourproduct_id)->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'image' => $request->save_url,
+                'updated_at' => Carbon::now(),
+            ]);
+
+            $notification = array(
+                'message' => 'Our Product Updated Successfully',
+                'alert-type' => 'info'
+            );
+
+            return redirect()->route('membership.all')->with($notification);
+
+        }else{
+
+            OurProduct::findOrFail($ourproduct_id)->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'updated_at' => Carbon::now(),
+            ]);
+
+            $notification = array(
+                'message' => 'Our Product Updated Successfully',
+                'alert-type' => 'info'
+            );
+
+            return redirect()->route('membership.all')->with($notification);
+        }
+        
+    }
+
+    Public function OurProductDelete($id){
+        
+        OurProduct::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Our Product Deleted Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
+
     }
 }
