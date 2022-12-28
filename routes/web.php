@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 
 
 use App\Http\Controllers\BackendController;
+use App\Http\Controllers\FrontendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,12 +23,12 @@ Route::get('/', function () {
 });
 
 //Admin
-Route::middleware(['auth:admin'])->group(function(){
+Route::group(['prefix'=>'admin', 'middleware'=>['admin:admin']], function(){
+    Route::get('/login', [AdminController::class, 'loginForm']);
+    Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
+});
 
-    Route::group(['prefix'=>'admin', 'middleware'=>['admin:admin']], function(){
-        Route::get('/login', [AdminController::class, 'loginForm']);
-        Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
-    });
+Route::middleware(['auth:admin'])->group(function(){
 
     Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
         return view('admin.dashboard');
@@ -102,3 +103,13 @@ Route::middleware(['auth:admin'])->group(function(){
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('/', [FrontendController::class, 'index']);
+Route::get('/about-us', [FrontendController::class, 'aboutus'])->name('aboutus');
+Route::get('/our-product-skincare', [FrontendController::class, 'skincare'])->name('skincare');
+Route::get('/our-product-handbag', [FrontendController::class, 'handbag'])->name('handbag');
+Route::get('/our-product-outfit', [FrontendController::class, 'outfit'])->name('outfit');
+Route::get('/contact-us', [FrontendController::class, 'contactus'])->name('contactus');
+Route::get('/membership', [FrontendController::class, 'membership'])->name('membership');
+Route::get('/faq', [FrontendController::class, 'faq'])->name('faq');
+Route::get('/blog', [FrontendController::class, 'blog'])->name('blog');
