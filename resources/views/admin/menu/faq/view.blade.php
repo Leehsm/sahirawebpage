@@ -20,22 +20,26 @@ FAQs
   <table class="table table-success table-striped">
     <thead>
       <tr>
-        <th scope="col">Description</th>
+        <th scope="col">Question</th>
+        <th scope="col">Answer</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
+      @foreach($faq as $data)
       <tr>
-        <td scope="row">1</td>  
+        <td scope="row">{{ $data->question }}</td> 
+        <td scope="row">{{ $data->answer }}</td>  
         <td width="15%">   
-          <a href="#" class="btn btn-info btn-sm" title="Edit Data">
+          <a href="{{ route('faq.edit', $data->id) }}" class="btn btn-info btn-sm" title="Edit Data">
             Edit 
           </a>
-          <a href="#" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
+          <a href="{{ route('faq.delete', $data->id) }}" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
             Delete
           </a>
-      </td>
+        </td>
       </tr>
+      @endforeach
     </tbody>
   </table>
 </main>

@@ -11,12 +11,12 @@ Add FAQ
     <form method="post" action="{{ route('contactus.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
-            <label for="email" class="form-label">Question</label>
-            <input type="email" class="form-control" id="email">
+            <label for="question" class="form-label">Question</label>
+            <input type="text" class="form-control" name="question" id="question">
         </div>
         <div class="mb-3">
-            <label for="phone" class="form-label">Answer</label>
-            <input type="text" class="form-control" id="phone">
+            <label for="answer" class="form-label">Answer</label>
+            <input type="text" class="form-control" name="answer" id="answer">
         </div>
         <div class="text-xs-right">
             <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New">					 
