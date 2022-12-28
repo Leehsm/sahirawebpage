@@ -37,9 +37,9 @@ About Us
           <a href="{{ route('aboutus.delete', $data->id) }}" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
             Delete
           </a>
-      </td>
-      @endforeach
+        </td>
       </tr>
+      @endforeach
     </tbody>
   </table>
 </main>

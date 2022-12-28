@@ -10,15 +10,16 @@ Edit About Us
     </div>
     <form method="post" action="{{ route('aboutus.update', $aboutus->id) }}" enctype="multipart/form-data">
         @csrf
+        <input type="hidden" name="id" value="{{ $aboutus->id }}">
         <div class="mb-3">
-            <label for="image" class="form-label">Image</label>
+            <label for="old_image" class="form-label">Image</label>
             <br>
             <img src="{{ asset($aboutus->image) }}" class="card-img-top" style="height: 100px; width: 100px;">
-            <input type="file" class="form-control" id="image">
+            <input type="file" class="form-control" name="old_image" id="old_image">
         </div>
         <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{ $aboutus->description }}"</textarea>
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" name="description" id="description" rows="3">{{ $aboutus->description }}</textarea>
         </div>
         <div class="text-xs-right">
             <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update">					 
