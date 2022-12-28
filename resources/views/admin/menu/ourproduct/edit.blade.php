@@ -10,17 +10,20 @@ Add Our Product
     </div>
     <form method="post" action="{{ route('ourproduct.store') }}" enctype="multipart/form-data">
         @csrf
+        <input type="hidden" name="id" value="{{ $ourproduct->id }}">
         <div class="mb-3">
-            <label for="image" class="form-label">Image</label>
-            <input type="file" class="form-control" id="image">
+            <label for="old_image" class="form-label">Image</label>
+            <br><br>
+            <img src="{{ asset($contactus->image) }}" class="card-img-top" style="height: 100px; width: 100px;">
+            <input type="file" class="form-control" name="old_image" id="old_image">
         </div>
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name">
+            <input type="text" class="form-control" name="name" id="name">
         </div>
         <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label for="decription" class="form-label">Description</label>
+            <textarea class="form-control" name="decription" id="decription" rows="3"></textarea>
         </div>
         <div class="text-xs-right">
             <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New">					 
