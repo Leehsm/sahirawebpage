@@ -12,15 +12,19 @@ Add Contact Us
         @csrf
         <div class="mb-3">
             <label for="image" class="form-label">Image</label>
-            <input type="file" class="form-control" id="image">
+            <input type="file" class="form-control" name="image" id="image">
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email">
+            <input type="email" class="form-control" name="email" id="email">
         </div>
         <div class="mb-3">
-            <label for="phone" class="form-label">Contact No</label>
-            <input type="text" class="form-control" id="phone">
+            <label for="phone1" class="form-label">Contact No 1</label>
+            <input type="text" class="form-control" name="phone1" id="phone1">
+        </div>
+        <div class="mb-3">
+            <label for="phone2" class="form-label">Contact No 2</label>
+            <input type="text" class="form-control" name="phone2" id="phone2">
         </div>
         <div class="text-xs-right">
             <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New">					 

@@ -20,22 +20,30 @@ Contact Us
   <table class="table table-success table-striped">
     <thead>
       <tr>
-        <th scope="col">Description</th>
+        <th scope="col">Image</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone 1</th>
+        <th scope="col">Phone 2</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
+      @foreach($contactus as $data)
       <tr>
-        <td scope="row">1</td>  
+        <td width="15%"><img src="{{ asset($data->image) }}" style="width: 100px; height: 100px;"></td> 
+        <td width="15%">{{ $data->email }}</td> 
+        <td width="15%">{{ $data->phone_1 }}</td>  
+        <td width="15%">{{ $data->phone_2 }}</td>  
         <td width="15%">   
-          <a href="#" class="btn btn-info btn-sm" title="Edit Data">
+          <a href="{{ route('contactus.edit', $data->id) }}" class="btn btn-info btn-sm" title="Edit Data">
             Edit 
           </a>
-          <a href="#" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
+          <a href="{{ route('contactus.delete', $data->id) }}" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
             Delete
           </a>
-      </td>
+        </td>
       </tr>
+      @endforeach
     </tbody>
   </table>
 </main>
