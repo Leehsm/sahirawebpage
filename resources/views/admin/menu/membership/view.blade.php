@@ -22,24 +22,31 @@ Membership
       <tr>
         <th scope="col">#</th>
         <th scope="col">Name</th>
+        <th scope="col">DOB</th>
         <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Address</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
+      @foreach($membership as $data)
       <tr>
-        <td scope="row">1</td> 
-        <td scope="row">Ali</td> 
-        <td scope="row">ALi@gmail.com</td>  
+        <td scope="row">{{ $data->name }}</td> 
+        <td scope="row">{{ $data->birthdate }}</td> 
+        <td scope="row">{{ $data->email }}</td> 
+        <td scope="row">{{ $data->phonenum }}</td> 
+        <td scope="row">{{ $data->address }}</td>  
         <td width="15%">   
-          <a href="#" class="btn btn-info btn-sm" title="Edit Data">
+          <a href="{{ route('membership.edit', $data->id) }}" class="btn btn-info btn-sm" title="Edit Data">
             Edit 
           </a>
-          <a href="#" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
+          <a href="{{ route('membership.delete', $data->id) }}" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
             Delete
           </a>
-      </td>
+        </td>
       </tr>
+      @endforeach
     </tbody>
   </table>
 </main>
