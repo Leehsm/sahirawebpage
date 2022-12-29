@@ -34,6 +34,8 @@ Route::middleware(['auth:admin'])->group(function(){
         return view('admin.dashboard');
     })->name('dashboard');
 
+    
+    Route::get('/admin/dashboard', [BackendController::class, 'index']);
     Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 
     //AboutUS
@@ -96,6 +98,16 @@ Route::middleware(['auth:admin'])->group(function(){
         Route::get('/delete/{id}', [BackendController::class, 'OurProductDelete'])->name('ourproduct.delete');
     });
 
+    //OurTeam
+    Route::prefix('ourteam')->group(function(){
+        Route::get('/view', [BackendController::class, 'OurTeamView'])->name('ourteam.all');
+        Route::get('/add', [BackendController::class, 'OurTeamAdd'])->name('ourteam.add');
+        Route::post('/store', [BackendController::class, 'OurTeamStore'])->name('ourteam.store');
+        Route::get('/edit/{id}', [BackendController::class, 'OurTeamEdit'])->name('ourteam.edit');
+        Route::post('/update', [BackendController::class, 'OurTeamUpdate'])->name('ourteam.update');
+        Route::get('/delete/{id}', [BackendController::class, 'OurTeamDelete'])->name('ourteam.delete');
+    });
+
 });
 
 
@@ -113,3 +125,4 @@ Route::get('/contact-us', [FrontendController::class, 'contactus'])->name('conta
 Route::get('/membership', [FrontendController::class, 'membership'])->name('membership');
 Route::get('/faq', [FrontendController::class, 'faq'])->name('faq');
 Route::get('/blog', [FrontendController::class, 'blog'])->name('blog');
+Route::get('/readblog', [FrontendController::class, 'readblog'])->name('readblog');
