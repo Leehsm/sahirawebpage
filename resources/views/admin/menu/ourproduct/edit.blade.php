@@ -14,16 +14,16 @@ Add Our Product
         <div class="mb-3">
             <label for="old_image" class="form-label">Image</label>
             <br><br>
-            <img src="{{ asset($contactus->image) }}" class="card-img-top" style="height: 100px; width: 100px;">
+            <img src="{{ asset($ourproduct->image) }}" class="card-img-top" style="height: 100px; width: 100px;">
             <input type="file" class="form-control" name="old_image" id="old_image">
         </div>
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" name="name" id="name">
+            <input type="text" class="form-control" name="name" id="name" value="{{ $ourproduct->name }}">
         </div>
         <div class="mb-3">
             <label for="decription" class="form-label">Description</label>
-            <textarea class="form-control" name="decription" id="decription" rows="3"></textarea>
+            <textarea class="form-control" name="decription" id="decription" rows="3">{{ $ourproduct->description }}</textarea>
         </div>
         <div class="text-xs-right">
             <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New">					 
