@@ -32,16 +32,19 @@ About Us
             </div>
         </div>
         <div class="row blogs_container">
-            <div class="col-lg-4 blog_item_col">
-                <div class="blog_item">
-                    <div class="blog_background" style="background-image:url(assets/images/slider_1.jpg)"></div>
-                    <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
-                        <h4 class="blog_title">Founder</h4>
-                        <span class="blog_meta">Isnaini Binti Moin</span>
+            @foreach ($ourteam as $data)
+                <div class="col-lg-4 blog_item_col">
+                    <div class="blog_item">
+                        <div class="blog_background" style="background-image:url({{ $data->image }})"></div>
+                        <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+                            <h4 class="blog_title">{{ $data->position }}</h4>
+                            <span class="blog_meta">{{ $data->name }}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 blog_item_col">
+            @endforeach
+            
+            {{-- <div class="col-lg-4 blog_item_col">
                 <div class="blog_item">
                 <div class="blog_background" style="background-image:url(assets/images/blog_2.jpg)"></div>
                 <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
@@ -89,7 +92,7 @@ About Us
                     <a class="blog_more" href="#">Read more</a>
                 </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
