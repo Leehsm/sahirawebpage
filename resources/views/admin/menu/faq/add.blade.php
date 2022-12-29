@@ -8,7 +8,7 @@ Add FAQ
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Add FAQ</h1>
     </div>
-    <form method="post" action="{{ route('contactus.store') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('faq.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="question" class="form-label">Question</label>
