@@ -13,22 +13,26 @@ Admin Dashboard
   <table class="table table-success table-striped">
     <thead>
       <tr>
+        <th scope="col">Image</th>
         <th scope="col">Description</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
+      @foreach($aboutus as $data)
       <tr>
-        <td scope="row">1</td>  
+        <td width="15%"><img src="{{ asset($data->image) }}" style="width: 100px; height: 100px;"></td>  
+        <td>{{ $data->description }}</td>  
         <td width="15%">   
-          <a href="#" class="btn btn-info btn-sm" title="Edit Data">
+          <a href="{{ route('aboutus.edit', $data->id) }}" class="btn btn-info btn-sm" title="Edit Data">
             Edit 
           </a>
-          <a href="#" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
+          <a href="{{ route('aboutus.delete', $data->id) }}" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
             Delete
           </a>
-      </td>
+        </td>
       </tr>
+      @endforeach
     </tbody>
   </table>
 
@@ -36,22 +40,30 @@ Admin Dashboard
   <table class="table table-success table-striped">
     <thead>
       <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Title</th>
+        <th scope="col">Date</th>
         <th scope="col">Description</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
+      @foreach($blog as $data)
       <tr>
-        <td scope="row">1</td>  
+        <td width="15%"><img src="{{ asset($data->image) }}" style="width: 100px; height: 100px;"></td> 
+        <td width="15%">{{ $data->title }}</td> 
+        <td width="15%">{{ $data->date }}</td>  
+        <td>{{ $data->description }}</td>  
         <td width="15%">   
-          <a href="#" class="btn btn-info btn-sm" title="Edit Data">
+          <a href="{{ route('blog.edit', $data->id) }}" class="btn btn-info btn-sm" title="Edit Data">
             Edit 
           </a>
-          <a href="#" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
+          <a href="{{ route('blog.delete', $data->id) }}" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
             Delete
           </a>
-      </td>
+        </td>
       </tr>
+      @endforeach
     </tbody>
   </table>
 
@@ -59,22 +71,30 @@ Admin Dashboard
   <table class="table table-success table-striped">
     <thead>
       <tr>
-        <th scope="col">Description</th>
+        <th scope="col">Image</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone 1</th>
+        <th scope="col">Phone 2</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
+      @foreach($contactus as $data)
       <tr>
-        <td scope="row">1</td>  
+        <td width="15%"><img src="{{ asset($data->image) }}" style="width: 100px; height: 100px;"></td> 
+        <td width="15%">{{ $data->email }}</td> 
+        <td width="15%">{{ $data->phone_1 }}</td>  
+        <td width="15%">{{ $data->phone_2 }}</td>  
         <td width="15%">   
-          <a href="#" class="btn btn-info btn-sm" title="Edit Data">
+          <a href="{{ route('contactus.edit', $data->id) }}" class="btn btn-info btn-sm" title="Edit Data">
             Edit 
           </a>
-          <a href="#" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
+          <a href="{{ route('contactus.delete', $data->id) }}" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
             Delete
           </a>
-      </td>
+        </td>
       </tr>
+      @endforeach
     </tbody>
   </table>
 
@@ -82,22 +102,26 @@ Admin Dashboard
   <table class="table table-success table-striped">
     <thead>
       <tr>
-        <th scope="col">Description</th>
+        <th scope="col">Question</th>
+        <th scope="col">Answer</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
+      @foreach($faq as $data)
       <tr>
-        <td scope="row">1</td>  
+        <td scope="row">{{ $data->question }}</td> 
+        <td scope="row">{{ $data->answer }}</td>  
         <td width="15%">   
-          <a href="#" class="btn btn-info btn-sm" title="Edit Data">
+          <a href="{{ route('faq.edit', $data->id) }}" class="btn btn-info btn-sm" title="Edit Data">
             Edit 
           </a>
-          <a href="#" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
+          <a href="{{ route('faq.delete', $data->id) }}" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
             Delete
           </a>
-      </td>
+        </td>
       </tr>
+      @endforeach
     </tbody>
   </table>
 
@@ -105,22 +129,28 @@ Admin Dashboard
   <table class="table table-success table-striped">
     <thead>
       <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Name</th>
         <th scope="col">Description</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
+      @foreach($ourproduct as $data)
       <tr>
-        <td scope="row">1</td>  
+        <td width="15%"><img src="{{ asset($data->image) }}" style="width: 100px; height: 100px;"></td> 
+        <td scope="row">{{ $data->name }}</td> 
+        <td scope="row">{{ $data->descriptiom }}</td> 
         <td width="15%">   
-          <a href="#" class="btn btn-info btn-sm" title="Edit Data">
+          <a href="{{ route('ourproduct.edit', $data->id) }}" class="btn btn-info btn-sm" title="Edit Data">
             Edit 
           </a>
-          <a href="#" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
+          <a href="{{ route('ourproduct.delete', $data->id) }}" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
             Delete
           </a>
-      </td>
+        </td>
       </tr>
+      @endforeach
     </tbody>
   </table>
 
@@ -128,23 +158,35 @@ Admin Dashboard
   <table class="table table-success table-striped">
     <thead>
       <tr>
-        <th scope="col">Description</th>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">DOB</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Address</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
+      @foreach($membership as $data)
       <tr>
-        <td scope="row">1</td>  
+        <td scope="row">{{ $data->name }}</td> 
+        <td scope="row">{{ $data->birthdate }}</td> 
+        <td scope="row">{{ $data->email }}</td> 
+        <td scope="row">{{ $data->phonenum }}</td> 
+        <td scope="row">{{ $data->address }}</td>  
         <td width="15%">   
-          <a href="#" class="btn btn-info btn-sm" title="Edit Data">
+          <a href="{{ route('membership.edit', $data->id) }}" class="btn btn-info btn-sm" title="Edit Data">
             Edit 
           </a>
-          <a href="#" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
+          <a href="{{ route('membership.delete', $data->id) }}" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
             Delete
           </a>
-      </td>
+        </td>
       </tr>
+      @endforeach
     </tbody>
   </table>
+  <br>
 </main>
 @endsection
