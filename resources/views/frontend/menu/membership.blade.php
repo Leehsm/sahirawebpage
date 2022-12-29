@@ -25,28 +25,27 @@ Membership
         <h2>Join Now</h2>
         </div>
     </div>
-    <br>
-    <div class="newsletter">
+    <div class="membership">
         <div class="container">
             <div class="col-lg-8">
                 <form action="post">
-                    <div class="newsletter_form">
-                        <input id="newsletter_email" name="name" type="text" placeholder="Your Name" required="required" >
+                    <div class="membership_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
+                        <input id="membership_email" name="name" type="text" placeholder="Your Name" required="required" >
                     </div>
-                    <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
-                        <input id="newsletter_email" name="email" type="email" placeholder="Your Email" required="required" data-error="Valid email is required.">
+                    <div class="membership_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
+                        <input id="membership_email" name="email" type="email" placeholder="Your Email" required="required" data-error="Valid email is required.">
                     </div>
-                    <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
-                        <input id="newsletter_email" name="phone" type="text" placeholder="Your Phone Number" required="required" >
+                    <div class="membership_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
+                        <input id="membership_email" name="phone" type="text" placeholder="Your Phone Number" required="required" >
                     </div>
-                    <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
-                        <input id="newsletter_email" name="address" type="text" placeholder="Your Address" required="required" >
+                    <div class="membership_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
+                        <input id="membership_email" name="address" type="text" placeholder="Your Address" required="required" >
                     </div>
-                    <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
-                        <input id="newsletter_email" name="birthdate" type="date" placeholder="Your Birthdate" required="required">
+                    <div class="membership_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
+                        <input id="membership_email" name="birthdate" type="text" placeholder="Your Birthdate DD/MM/YYYY" required="required">
                     </div>
-                    <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
-                        <button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">Register</button>
+                    <div class="membership_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
+                        <button id="membership_submit" type="submit" class="membership_submit_btn trans_300" value="Submit">Register</button>
                     </div>
                 </form>
             </div>
