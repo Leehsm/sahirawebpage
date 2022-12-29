@@ -9,6 +9,7 @@ use App\Models\Blog;
 use App\Models\ContactUs;
 use App\Models\FAQ;
 use App\Models\OurProduct;
+use App\Models\OurTeam;
 use App\Models\Membership;
 
 use Image;
@@ -20,19 +21,24 @@ class FrontendController extends Controller
     public function index(){
 
         $aboutus = AboutUS::latest()->get();
+        $ourteam = OurTeam::latest()->get();
         $blog = Blog::latest()->get();
         $contactus = ContactUs::latest()->get();
         $faq = FAQ::latest()->get();
-        $ourproduct = OurProduct::latest()->get();
+        $ourproduct1 = OurProduct::where('name','Clothing')->get();
+        $ourproduct2 = OurProduct::where('name','Handbag')->get();
+        $ourproduct3 = OurProduct::where('name','Skincare')->get();
         $membership = Membership::latest()->get();
 
-        return view('frontend.index', compact('aboutus', 'blog', 'contactus', 'faq', 'ourproduct', 'membership'));
+        return view('frontend.index', compact('aboutus', 'blog', 'contactus', 'faq', 'ourproduct1', 'ourproduct2', 'ourproduct3', 'membership'));
 
     }
 
     public function aboutus(){
-
-        return view('frontend.menu.aboutus');
+        
+        $ourteam = OurTeam::latest()->get();
+        $aboutus = AboutUS::latest()->get();
+        return view('frontend.menu.aboutus', compact('ourteam', 'aboutus'));
         
     }
     
@@ -75,6 +81,12 @@ class FrontendController extends Controller
     public function blog(){
 
         return view('frontend.menu.blog');
+        
+    }
+    
+    public function readblog(){
+
+        return view('frontend.menu.readblog');
         
     }
 

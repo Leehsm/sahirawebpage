@@ -9,6 +9,7 @@ use App\Models\Blog;
 use App\Models\ContactUs;
 use App\Models\FAQ;
 use App\Models\OurProduct;
+use App\Models\OurTeam;
 use App\Models\Membership;
 
 use Image;
@@ -17,6 +18,18 @@ use Carbon\Carbon;
 
 class BackendController extends Controller
 {
+
+    public function index(){
+        
+        $aboutus = AboutUs::latest()->get();
+        $blog = Blog::latest()->get();
+        $contactus = ContactUs::latest()->get();
+        $faq = FAQ::latest()->get();
+        $membership = Membership::latest()->get();
+        $ourproduct = OurProduct::latest()->get();
+
+        return view('admin.dashboard', compact('aboutus','blog','contactus','faq','membership','ourproduct'));
+    }
     //About Us
     Public function AboutUsView(){
 
@@ -553,7 +566,7 @@ class BackendController extends Controller
                 'alert-type' => 'info'
             );
 
-            return redirect()->route('membership.all')->with($notification);
+            return redirect()->route('ourproduct.all')->with($notification);
 
         }else{
 
@@ -568,7 +581,7 @@ class BackendController extends Controller
                 'alert-type' => 'info'
             );
 
-            return redirect()->route('membership.all')->with($notification);
+            return redirect()->route('ourproduct.all')->with($notification);
         }
         
     }
@@ -585,4 +598,108 @@ class BackendController extends Controller
         return redirect()->back()->with($notification);
 
     }
+
+    //Our Team
+    Public function OurTeamView(){
+
+        $ourteam = OurTeam::latest()->get();
+        return view('admin.menu.ourteam.view', compact('ourteam'));
+
+    }
+
+    Public function OurTeamAdd(){
+
+        return view('admin.menu.ourteam.add');
+
+    }
+
+    Public function OurTeamStore(Request $request){
+
+        $image = $request->file('image');
+    	$name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+    	Image::make($image)->save('upload/'.$name_gen);
+    	$save_url = 'upload/'.$name_gen;
+
+	    $ourteam_id = OurTeam::insertGetId([
+            'name' => $request->name,
+            'position' => $request->position,
+            'image' => $save_url,
+            // 'created_by' => Auth::id(),
+            'created_at' => Carbon::now(),
+    	]);
+
+	    $notification = array(
+			'message' => 'Our Team Inserted Successfully',
+			'alert-type' => 'success'
+		);
+
+		return redirect()->route('ourteam.all')->with($notification);        
+        
+    }
+
+    Public function OurTeamEdit($id){
+        
+        $ourteam = OurTeam::findOrFail($id);
+        return view('admin.menu.ourteam.edit', compact('ourteam'));
+        
+    }
+
+    Public function OurTeamUpdate(Request $request){
+
+        $ourteam_id = $request->id;
+        $old_img = $request->old_image;
+
+        if($request->file('image')){
+        
+            unlink($old_img);
+            $image = $request->file('image');
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->save('upload/'.$name_gen);
+            $save_url = 'upload/'.$name_gen;
+
+            OurTeam::findOrFail($ourteam_id)->update([
+                'name' => $request->name,
+                'position' => $request->position,
+                'image' => $request->save_url,
+                'updated_at' => Carbon::now(),
+            ]);
+
+            $notification = array(
+                'message' => 'Our Product Updated Successfully',
+                'alert-type' => 'info'
+            );
+
+            return redirect()->route('ourteam.all')->with($notification);
+
+        }else{
+
+            OurTeam::findOrFail($ourteam_id)->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'updated_at' => Carbon::now(),
+            ]);
+
+            $notification = array(
+                'message' => 'Our Product Updated Successfully',
+                'alert-type' => 'info'
+            );
+
+            return redirect()->route('ourteam.all')->with($notification);
+        }
+        
+    }
+
+    Public function OurTeamDelete($id){
+        
+        OurTeam::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Our Team Deleted Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
+
+    }
+
 }
