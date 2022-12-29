@@ -20,46 +20,159 @@ Blogs
 </div>
 
 
-<!-- Benefit -->
-<div class="benefit">
+<div class="blogs">
     <div class="container">
-        <div class="row benefit_row">
-        <div class="col-lg-3 benefit_col">
-            <div class="benefit_item d-flex flex-row align-items-center">
-            <div class="benefit_icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
-            <div class="benefit_content">
-                <h6>free shipping</h6>
-                <p>Suffered Alteration in Some Form</p>
+        <div class="row blogs_container">
+            <div class="col-lg-4 blog_item_col">
+                <div class="blog_item">
+                    <div class="blog_background" style="background-image:url(assets/images/blog_1.jpg)"></div>
+                    <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+                        <h4 class="blog_title">Here are the trends I see coming this fall</h4>
+                        <span class="blog_meta">by admin | dec 01, 2021</span>
+                        <a class="blog_more" href="{{ route('readblog') }}">Read more</a>
+                    </div>
+                </div>
             </div>
+            <div class="col-lg-4 blog_item_col">
+                <div class="blog_item">
+                    <div class="blog_background" style="background-image:url(assets/images/blog_2.jpg)"></div>
+                    <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+                        <h4 class="blog_title">Here are the trends I see coming this fall</h4>
+                        <span class="blog_meta">by admin | dec 01, 2021</span>
+                        <a class="blog_more" href="#">Read more</a>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-3 benefit_col">
-            <div class="benefit_item d-flex flex-row align-items-center">
-            <div class="benefit_icon"><i class="fa fa-money" aria-hidden="true"></i></div>
-            <div class="benefit_content">
-                <h6>cach on delivery</h6>
-                <p>The Internet Tend To Repeat</p>
+            <div class="col-lg-4 blog_item_col">
+                <div class="blog_item">
+                    <div class="blog_background" style="background-image:url(assets/images/blog_3.jpg)"></div>
+                    <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+                        <h4 class="blog_title">Here are the trends I see coming this fall</h4>
+                        <span class="blog_meta">by admin | dec 01, 2021</span>
+                        <a class="blog_more" href="#">Read more</a>
+                    </div>
+                </div>
             </div>
+            <div class="col-lg-4 blog_item_col">
+                <div class="blog_item">
+                    <div class="blog_background" style="background-image:url(assets/images/blog_1.jpg)"></div>
+                    <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+                        <h4 class="blog_title">Here are the trends I see coming this fall</h4>
+                        <span class="blog_meta">by admin | dec 01, 2021</span>
+                        <a class="blog_more" href="{{ route('blog') }}">Read more</a>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-3 benefit_col">
-            <div class="benefit_item d-flex flex-row align-items-center">
-            <div class="benefit_icon"><i class="fa fa-undo" aria-hidden="true"></i></div>
-            <div class="benefit_content">
-                <h6>45 days return</h6>
-                <p>Making it Look Like Readable</p>
+            <div class="col-lg-4 blog_item_col">
+                <div class="blog_item">
+                    <div class="blog_background" style="background-image:url(assets/images/blog_2.jpg)"></div>
+                    <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+                        <h4 class="blog_title">Here are the trends I see coming this fall</h4>
+                        <span class="blog_meta">by admin | dec 01, 2021</span>
+                        <a class="blog_more" href="#">Read more</a>
+                    </div>
+                </div>
             </div>
+            <div class="col-lg-4 blog_item_col">
+                <div class="blog_item">
+                    <div class="blog_background" style="background-image:url(assets/images/blog_3.jpg)"></div>
+                    <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+                        <h4 class="blog_title">Here are the trends I see coming this fall</h4>
+                        <span class="blog_meta">by admin | dec 01, 2021</span>
+                        <a class="blog_more" href="#">Read more</a>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-3 benefit_col">
-            <div class="benefit_item d-flex flex-row align-items-center">
-            <div class="benefit_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
-            <div class="benefit_content">
-                <h6>opening all week</h6>
-                <p>8AM - 09PM</p>
+            <div class="col-lg-4 blog_item_col">
+                <div class="blog_item">
+                    <div class="blog_background" style="background-image:url(assets/images/blog_1.jpg)"></div>
+                    <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+                        <h4 class="blog_title">Here are the trends I see coming this fall</h4>
+                        <span class="blog_meta">by admin | dec 01, 2021</span>
+                        <a class="blog_more" href="{{ route('blog') }}">Read more</a>
+                    </div>
+                </div>
             </div>
+            <div class="col-lg-4 blog_item_col">
+                <div class="blog_item">
+                    <div class="blog_background" style="background-image:url(assets/images/blog_2.jpg)"></div>
+                    <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+                        <h4 class="blog_title">Here are the trends I see coming this fall</h4>
+                        <span class="blog_meta">by admin | dec 01, 2021</span>
+                        <a class="blog_more" href="#">Read more</a>
+                    </div>
+                </div>
             </div>
-        </div>
+            <div class="col-lg-4 blog_item_col">
+                <div class="blog_item">
+                    <div class="blog_background" style="background-image:url(assets/images/blog_3.jpg)"></div>
+                    <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+                        <h4 class="blog_title">Here are the trends I see coming this fall</h4>
+                        <span class="blog_meta">by admin | dec 01, 2021</span>
+                        <a class="blog_more" href="#">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 blog_item_col">
+                <div class="blog_item">
+                    <div class="blog_background" style="background-image:url(assets/images/blog_1.jpg)"></div>
+                    <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+                        <h4 class="blog_title">Here are the trends I see coming this fall</h4>
+                        <span class="blog_meta">by admin | dec 01, 2021</span>
+                        <a class="blog_more" href="{{ route('blog') }}">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 blog_item_col">
+                <div class="blog_item">
+                    <div class="blog_background" style="background-image:url(assets/images/blog_2.jpg)"></div>
+                    <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+                        <h4 class="blog_title">Here are the trends I see coming this fall</h4>
+                        <span class="blog_meta">by admin | dec 01, 2021</span>
+                        <a class="blog_more" href="#">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 blog_item_col">
+                <div class="blog_item">
+                    <div class="blog_background" style="background-image:url(assets/images/blog_3.jpg)"></div>
+                    <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+                        <h4 class="blog_title">Here are the trends I see coming this fall</h4>
+                        <span class="blog_meta">by admin | dec 01, 2021</span>
+                        <a class="blog_more" href="#">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 blog_item_col">
+                <div class="blog_item">
+                    <div class="blog_background" style="background-image:url(assets/images/blog_1.jpg)"></div>
+                    <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+                        <h4 class="blog_title">Here are the trends I see coming this fall</h4>
+                        <span class="blog_meta">by admin | dec 01, 2021</span>
+                        <a class="blog_more" href="{{ route('blog') }}">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 blog_item_col">
+                <div class="blog_item">
+                    <div class="blog_background" style="background-image:url(assets/images/blog_2.jpg)"></div>
+                    <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+                        <h4 class="blog_title">Here are the trends I see coming this fall</h4>
+                        <span class="blog_meta">by admin | dec 01, 2021</span>
+                        <a class="blog_more" href="#">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 blog_item_col">
+                <div class="blog_item">
+                    <div class="blog_background" style="background-image:url(assets/images/blog_3.jpg)"></div>
+                    <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+                        <h4 class="blog_title">Here are the trends I see coming this fall</h4>
+                        <span class="blog_meta">by admin | dec 01, 2021</span>
+                        <a class="blog_more" href="#">Read more</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
