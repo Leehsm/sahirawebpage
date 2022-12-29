@@ -5,7 +5,7 @@ Sahira
 @endsection
 
 <!-- Slider -->
-<div class="main_slider" style="background-image:url(assets/images/mainpage.jpg)">
+<div class="main_slider" style="background-image:url(assets/images/test2.png)">
     <div class="container fill_height">
         <div class="row align-items-center fill_height">
         <div class="col">
@@ -20,12 +20,13 @@ Sahira
 </div>
 
 <!-- About Us -->
+@foreach ($aboutus as $data )
 <div class="deal_ofthe_week">
     <div class="container">
         <div class="row align-items-center" id="aboutus">
             <div class="col-lg-6">
             <div class="deal_ofthe_week_img">
-                <img src="assets/images/deal_ofthe_week.png" alt="">
+                <img src="assets/images/test.png" alt="">
             </div>
             </div>
             <div class="col-lg-6 text-right deal_ofthe_week_col">
@@ -33,8 +34,9 @@ Sahira
                 <div class="section_title">
                 <h2>About Us</h2>
                 </div>
+                <br>
                 <div class=".main_slider_abt">
-                    <h6>About Us Get up to 30% Off New Arrivals</h6>
+                    <h6>{{ $data->description }}</h6>
                 </div>
                 
                 <div class="red_button deal_ofthe_week_button"><a href="{{ route('aboutus') }}">More</a></div>
@@ -43,6 +45,7 @@ Sahira
         </div>
     </div>
 </div>
+@endforeach    
 
 <!-- Our Product -->
 <div class="banner" id="ourproduct">
@@ -56,27 +59,35 @@ Sahira
     <br>
     <div class="container">
         <div class="row">
-        <div class="col-md-4">
-            <div class="banner_item align-items-center" style="background-image:url(assets/images/banner_1.jpg)">
-            <div class="banner_category">
-                <a href="{{ route('outfit') }}#clothing">Clothing</a>
-            </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="banner_item align-items-center" style="background-image:url(assets/images/banner_2.jpg)">
-            <div class="banner_category">
-                <a href="{{ route('handbag') }}#handbag">Handbag</a>
-            </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="banner_item align-items-center" style="background-image:url(assets/images/banner_4.jpeg)">
-            <div class="banner_category">
-                <a href="{{ route('skincare') }}#skincare">Skincare</a>
-            </div>
-            </div>
-        </div>
+            @foreach ($ourproduct1 as $data )
+                <div class="col-md-4">
+                    <div class="banner_item align-items-center" style="background-image:url({{ $data->image }})">
+                    <div class="banner_category">
+                        <a href="{{ route('outfit') }}#clothing">{{ $data->name }}</a>
+                    </div>
+                    </div>
+                </div>
+            @endforeach
+        
+            @foreach ($ourproduct2 as $data )
+                <div class="col-md-4">
+                    <div class="banner_item align-items-center" style="background-image:url({{ $data->image }})">
+                    <div class="banner_category">
+                        <a href="{{ route('handbag') }}#handbag">{{ $data->name }}</a>
+                    </div>
+                    </div>
+                </div>
+            @endforeach
+
+            @foreach ($ourproduct3 as $data )
+                <div class="col-md-4">
+                    <div class="banner_item align-items-center" style="background-image:url({{ $data->image }})">
+                    <div class="banner_category">
+                        <a href="{{ route('skincare') }}#skincare">{{ $data->name }}</a>
+                    </div>
+                    </div>
+                </div>
+            @endforeach     
         </div>
     </div>
 </div>
@@ -87,7 +98,7 @@ Sahira
         <div class="row align-items-center" id="contactus">
             <div class="col-lg-6">
             <div class="deal_ofthe_week_img">
-                <img src="assets/images/deal_ofthe_week.png" alt="">
+                <img src="assets/images/test2.png" alt="">
             </div>
             </div>
             <div class="col-lg-6 text-right deal_ofthe_week_col">
@@ -110,7 +121,7 @@ Sahira
         <div class="row align-items-center" id="membership">
         <div class="col-lg-6">
             <div class="deal_ofthe_week_img">
-            <img src="assets/images/deal_ofthe_week.png" alt="">
+            <img src="assets/images/test3.png" alt="">
             </div>
         </div>
         <div class="col-lg-6 text-right deal_ofthe_week_col">
