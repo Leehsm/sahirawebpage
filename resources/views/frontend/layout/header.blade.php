@@ -52,11 +52,11 @@
     <div class="hamburger_close"><i class="fa fa-times" aria-hidden="true"></i></div>
     <div class="hamburger_menu_content text-right">
       <ul class="menu_top_nav">
-        <li class="menu_item"><a href="#">Home</a></li>
-        <li class="menu_item"><a href="#aboutus">About Us</a></li>
-        <li class="menu_item"><a href="#">Our Product</a></li>
-        <li class="menu_item"><a href="#">Contact</a></li>
-        <li class="menu_item"><a href="#">Membership</a></li>
+        <li class="menu_item"><a href="{{ url('/') }}">Home</a></li>
+        <li class="menu_item"><a href="/#aboutus">About Us</a></li>
+        <li class="menu_item"><a href="/#ourproduct">Our Product</a></li>
+        <li class="menu_item"><a href="/#contactus">Contact</a></li>
+        <li class="menu_item"><a href="/#membership">Membership</a></li>
         <li class="menu_item"><a href="#">Shopping With Us</a></li>
       </ul>
     </div>
