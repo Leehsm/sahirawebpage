@@ -36,6 +36,35 @@ Admin Dashboard
     </tbody>
   </table>
 
+  <h4>Our Teams</h4>
+  <table class="table table-success table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Image</th>
+        <th scope="col">name</th>
+        <th scope="col">Position</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach($ourteam as $data)
+      <tr>
+        <td width="15%"><img src="{{ asset($data->image) }}" style="width: 100px; height: 100px;"></td>  
+        <td>{{ $data->name }}</td>   
+        <td>{{ $data->position }}</td>  
+        <td width="15%">   
+          <a href="{{ route('aboutus.edit', $data->id) }}" class="btn btn-info btn-sm" title="Edit Data">
+            Edit 
+          </a>
+          <a href="{{ route('aboutus.delete', $data->id) }}" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
+            Delete
+          </a>
+        </td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
+
   <h4>Blog</h4>
   <table class="table table-success table-striped">
     <thead>
@@ -158,7 +187,6 @@ Admin Dashboard
   <table class="table table-success table-striped">
     <thead>
       <tr>
-        <th scope="col">#</th>
         <th scope="col">Name</th>
         <th scope="col">DOB</th>
         <th scope="col">Email</th>
