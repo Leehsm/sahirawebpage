@@ -154,7 +154,7 @@ Sahira
             <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
                 <h4 class="blog_title">Here are the trends I see coming this fall</h4>
                 <span class="blog_meta">by admin | dec 01, 2021</span>
-                <a class="blog_more" href="{{ route('blog') }}">Read more</a>
+                <a class="blog_more" href="{{ route('readblog') }}">Read more</a>
             </div>
             </div>
         </div>
