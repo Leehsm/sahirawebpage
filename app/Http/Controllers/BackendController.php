@@ -27,8 +27,9 @@ class BackendController extends Controller
         $faq = FAQ::latest()->get();
         $membership = Membership::latest()->get();
         $ourproduct = OurProduct::latest()->get();
+        $ourteam = OurTeam::latest()->get();
 
-        return view('admin.dashboard', compact('aboutus','blog','contactus','faq','membership','ourproduct'));
+        return view('admin.dashboard', compact('aboutus','blog','contactus','faq','membership','ourproduct', 'ourteam'));
     }
     //About Us
     Public function AboutUsView(){
