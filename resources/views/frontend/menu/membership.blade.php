@@ -28,7 +28,8 @@ Membership
     <div class="membership">
         <div class="container">
             <div class="col-lg-8">
-                <form action="post">
+                <form method="post" action="{{ route('membership.register') }}">
+                    @csrf
                     <div class="membership_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
                         <input id="membership_email" name="name" type="text" placeholder="Your Name" required="required" >
                     </div>
@@ -42,7 +43,7 @@ Membership
                         <input id="membership_email" name="address" type="text" placeholder="Your Address" required="required" >
                     </div>
                     <div class="membership_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
-                        <input id="membership_email" name="birthdate" type="text" placeholder="Your Birthdate DD/MM/YYYY" required="required">
+                        <input id="membership_email" name="dob" type="text" placeholder="Your Birthdate DD/MM/YYYY" required="required">
                     </div>
                     <div class="membership_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
                         <button id="membership_submit" type="submit" class="membership_submit_btn trans_300" value="Submit">Register</button>

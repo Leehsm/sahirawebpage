@@ -112,9 +112,9 @@ Route::middleware(['auth:admin'])->group(function(){
 
 
 //User
-Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
 
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/about-us', [FrontendController::class, 'aboutus'])->name('aboutus');
@@ -123,6 +123,7 @@ Route::get('/our-product-handbag', [FrontendController::class, 'handbag'])->name
 Route::get('/our-product-outfit', [FrontendController::class, 'outfit'])->name('outfit');
 Route::get('/contact-us', [FrontendController::class, 'contactus'])->name('contactus');
 Route::get('/membership', [FrontendController::class, 'membership'])->name('membership');
+Route::post('membership/register', [FrontendController::class, 'membershipRegister'])->name('membership.register');
 Route::get('/faq', [FrontendController::class, 'faq'])->name('faq');
 Route::get('/blog', [FrontendController::class, 'blog'])->name('blog');
 Route::get('/readblog', [FrontendController::class, 'readblog'])->name('readblog');
