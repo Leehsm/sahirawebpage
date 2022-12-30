@@ -26,7 +26,6 @@ Membership
   <table class="table table-success table-striped">
     <thead>
       <tr>
-        <th scope="col">#</th>
         <th scope="col">Name</th>
         <th scope="col">DOB</th>
         <th scope="col">Email</th>
