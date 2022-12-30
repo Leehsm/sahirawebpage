@@ -72,6 +72,26 @@ class FrontendController extends Controller
         
     }
 
+    public function membershipRegister(Request $request){
+
+        $membership_id = Membership::insertGetId([
+            'name' => $request->name,
+            'birthdate' => $request->dob,
+            'phonenum' => $request->phone,
+            'email' => $request->email,
+            'address' => $request->address,
+            'created_at' => Carbon::now(),
+    	]);
+
+	    $notification = array(
+			'message' => 'Membership Registered Successfully',
+			'alert-type' => 'success'
+		);
+
+		return redirect()->back()->with($notification);
+
+    }
+
     public function faq(){
 
         return view('frontend.menu.faq');
