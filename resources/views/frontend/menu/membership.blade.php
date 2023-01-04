@@ -66,37 +66,33 @@ Membership
         <div class="row benefit_row">
         <div class="col-lg-3 benefit_col">
             <div class="benefit_item d-flex flex-row align-items-center">
-            <div class="benefit_icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
+            <div class="benefit_icon"><i class="fa fa-bullhorn" aria-hidden="true"></i></div>
             <div class="benefit_content">
                 <h6>Get Latest Promotion</h6>
-                <p>Suffered Alteration in Some Form</p>
             </div>
             </div>
         </div>
         <div class="col-lg-3 benefit_col">
             <div class="benefit_item d-flex flex-row align-items-center">
-            <div class="benefit_icon"><i class="fa fa-money" aria-hidden="true"></i></div>
+            <div class="benefit_icon"><i class="fa fa-birthday-cake " aria-hidden="true"></i></div>
             <div class="benefit_content">
                 <h6>Get Birthday Promotion</h6>
-                <p>The Internet Tend To Repeat</p>
             </div>
             </div>
         </div>
         <div class="col-lg-3 benefit_col">
             <div class="benefit_item d-flex flex-row align-items-center">
-            <div class="benefit_icon"><i class="fa fa-undo" aria-hidden="true"></i></div>
+            <div class="benefit_icon"><i class="fa fa-sign-in" aria-hidden="true"></i></div>
             <div class="benefit_content">
                 <h6>Join Our Vip Group</h6>
-                <p>Making it Look Like Readable</p>
             </div>
             </div>
         </div>
         <div class="col-lg-3 benefit_col">
             <div class="benefit_item d-flex flex-row align-items-center">
-            <div class="benefit_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+            <div class="benefit_icon"><i class="fa fa-plus" aria-hidden="true"></i></div>
             <div class="benefit_content">
                 <h6>Many More ...</h6>
-                <p>8AM - 09PM</p>
             </div>
             </div>
         </div>
