@@ -21,7 +21,6 @@ class FrontendController extends Controller
     public function index(){
 
         $aboutus = AboutUS::latest()->get();
-        $ourteam = OurTeam::latest()->get();
         $blog = Blog::latest()->get();
         $contactus = ContactUs::latest()->get();
         $faq = FAQ::latest()->get();
@@ -36,7 +35,7 @@ class FrontendController extends Controller
 
     public function aboutus(){
         
-        $ourteam = OurTeam::latest()->get();
+        $ourteam = OurTeam::orderBy('id','ASC')->get();
         $aboutus = AboutUS::latest()->get();
         return view('frontend.menu.aboutus', compact('ourteam', 'aboutus'));
         
@@ -100,7 +99,9 @@ class FrontendController extends Controller
 
     public function blog(){
 
-        return view('frontend.menu.blog');
+        $blog = Blog::latest()->get();
+
+        return view('frontend.menu.blog', compact('blog'));
         
     }
     
