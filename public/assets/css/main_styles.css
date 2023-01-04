@@ -856,6 +856,7 @@ section
 {
 	font-weight: 400;
 	margin-bottom: 19;
+	text-align: justify;
 }
 .main_slider_abt h1
 {
@@ -1248,6 +1249,7 @@ section
 .deal_ofthe_week_content
 {
 	height: 100%;
+	text-align:justify;
 }
 .section_title
 {
