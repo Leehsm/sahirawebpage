@@ -38,6 +38,14 @@ Route::middleware(['auth:admin'])->group(function(){
     Route::get('/admin/dashboard', [BackendController::class, 'index']);
     Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 
+    //background images for all
+    Route::get('/view', [BackendController::class, 'BGView'])->name('bg.all');
+    Route::get('/add', [BackendController::class, 'BGAdd'])->name('bg.add');
+    Route::post('/store', [BackendController::class, 'BGStore'])->name('bg.store');
+    Route::get('/edit/{id}', [BackendController::class, 'BGEdit'])->name('bg.edit');
+    Route::post('/update', [BackendController::class, 'BGUpdate'])->name('bg.update');
+    Route::get('/delete/{id}', [BackendController::class, 'BGDelete'])->name('bg.delete');
+
     //AboutUS
     Route::prefix('aboutus')->group(function(){
         Route::get('/view', [BackendController::class, 'AboutUsView'])->name('aboutus.all');
@@ -86,6 +94,16 @@ Route::middleware(['auth:admin'])->group(function(){
         Route::get('/edit/{id}', [BackendController::class, 'MembershipEdit'])->name('membership.edit');
         Route::post('/update', [BackendController::class, 'MembershipUpdate'])->name('membership.update');
         Route::get('/delete/{id}', [BackendController::class, 'MembershipDelete'])->name('membership.delete');
+    });
+
+    //MembershipFE
+    Route::prefix('membershipFE')->group(function(){
+        Route::get('/view', [BackendController::class, 'MembershipFEView'])->name('membershipFE.all');
+        Route::get('/add', [BackendController::class, 'MembershipFEAdd'])->name('membershipFE.add');
+        Route::post('/store', [BackendController::class, 'MembershipFEStore'])->name('membershipFE.store');
+        Route::get('/edit/{id}', [BackendController::class, 'MembershipFEEdit'])->name('membershipFE.edit');
+        Route::post('/update', [BackendController::class, 'MembershipFEUpdate'])->name('membershipFE.update');
+        Route::get('/delete/{id}', [BackendController::class, 'MembershipFEDelete'])->name('membershipFE.delete');
     });
 
     //OurProduct
