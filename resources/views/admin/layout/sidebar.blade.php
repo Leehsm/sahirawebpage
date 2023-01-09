@@ -4,7 +4,7 @@
     // dd($prefix);
 @endphp
 
-<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 250px; height:150vh; position: fixed;">
+<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: auto; height:150vh; position: fixed;">
     <div class="dropdown">
         <a href="{{ url('admin/dashboard') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <svg class="bi pe-none me-2" width="40" height="32"></svg>

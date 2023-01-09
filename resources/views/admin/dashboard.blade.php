@@ -4,7 +4,9 @@
 Admin Dashboard
 @endsection
 
-<main class="col-md-8 ms-sm-auto col-lg-10 px-md-4">  
+<main class="col-md-8 ms-sm-auto col-lg-10 px-md-4" style="width: -webkit-calc(100% - 200px);
+width: calc(100% - 200px);
+float:right;">  
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Admin Dashboard</h1>
   </div>
