@@ -11,6 +11,11 @@ About Us
       <div class="btn-group me-2" >
         <button  type="button" class="btn btn-sm btn-outline-secondary">
           <a href="{{ route('aboutus.add') }}" class="d-flex align-items-center text-black text-decoration-none">
+            ADD BG IMAGE
+          </a>
+        </button>
+        <button  type="button" class="btn btn-sm btn-outline-secondary">
+          <a href="{{ route('aboutus.add') }}" class="d-flex align-items-center text-black text-decoration-none">
             ADD NEW
           </a>
         </button>
