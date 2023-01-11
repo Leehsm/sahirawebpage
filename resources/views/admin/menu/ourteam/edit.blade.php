@@ -11,11 +11,11 @@ Add Our Team
     <form method="post" action="{{ route('ourteam.store') }}" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id" value="{{ $ourteam->id }}">
+        <input type="hidden" name="old_image" value="{{ $ourteam->image }}">
         <div class="mb-3">
-            <label for="old_image" class="form-label">Image</label>
+            <label for="image" class="form-label">Image</label>
             <br><br>
-            <img src="{{ asset($ourteam->image) }}" class="card-img-top" style="height: 100px; width: 100px;">
-            <input type="file" class="form-control" name="old_image" id="old_image">
+            <input type="file" class="form-control" name="image" id="image">
         </div>
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
