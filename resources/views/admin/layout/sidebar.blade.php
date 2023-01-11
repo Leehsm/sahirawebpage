@@ -50,6 +50,11 @@
         </a>
     </li>
     <li>
+        <a href="{{ route('membershipFE.all') }}" class="nav-link text-white {{ ($prefix == '/membershipFE')? 'active':'' }}">
+            MembershipFE
+        </a>
+    </li>
+    <li>
         <a href="{{ route('membership.all') }}" class="nav-link text-white {{ ($prefix == '/membership')? 'active':'' }}">
             Membership
         </a>
@@ -57,6 +62,11 @@
     <li>
         <a href="{{ route('faq.all') }}" class="nav-link text-white {{ ($prefix == '/faq')? 'active':'' }}">
             FAQ
+        </a>
+    </li>
+    <li>
+        <a href="{{ route('bg.all') }}" class="nav-link text-white {{ ($prefix == '/bg')? 'active':'' }}">
+            Slider background
         </a>
     </li>
     </ul>
