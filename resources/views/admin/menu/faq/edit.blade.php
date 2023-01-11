@@ -8,9 +8,9 @@ Edit FAQ
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Edit FAQ</h1>
     </div>
-    <form method="post" action="{{ route('contactus.store') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('faq.store') }}" enctype="multipart/form-data">
         @csrf
-        <input type="hidden" name="id" value="{{ $contactus->id }}">
+        <input type="hidden" name="id" value="{{ $faq->id }}">
         <div class="mb-3">
             <label for="question" class="form-label">Question</label>
             <input type="text" class="form-control" name="question" id="question">

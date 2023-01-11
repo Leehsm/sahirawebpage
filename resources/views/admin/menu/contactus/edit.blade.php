@@ -11,23 +11,19 @@ Edit Contact Us
     <form method="post" action="{{ route('contactus.update') }}" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id" value="{{ $contactus->id }}">
+        <input type="hidden" name="old_image" value="{{ $contactus->image }}">
         <div class="mb-3">
-            <label for="old_image" class="form-label">Image</label>
+            <label for="image" class="form-label">Image</label>
             <br><br>
-            <img src="{{ asset($contactus->image) }}" class="card-img-top" style="height: 100px; width: 100px;">
-            <input type="file" class="form-control" name="old_image" id="old_image">
+            <input type="file" class="form-control" name="image" id="image">
         </div>
         <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" name="email" id="email" value="{{ $contactus->email }}">
+            <label for="name" class="form-label">Email</label>
+            <input type="text" class="form-control" name="name" id="name" value="{{ $contactus->name }}">
         </div>
         <div class="mb-3">
-            <label for="phone1" class="form-label">Contact No 1</label>
-            <input type="text" class="form-control" name="phone1" id="phone1" value="{{ $contactus->phone_1 }}">
-        </div>
-        <div class="mb-3">
-            <label for="phone2" class="form-label">Contact No 2</label>
-            <input type="text" class="form-control" name="phone2" id="phone2" value="{{ $contactus->phone_1 }}">
+            <label for="detail" class="form-label">Detail and Link</label>
+            <input type="text" class="form-control" name="detail" id="detail" value="{{ $contactus->desc_link }}">
         </div>
         <div class="text-xs-right">
             <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New">					 
