@@ -30,7 +30,7 @@ Blogs
                 <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
                     <h4 class="blog_title">{{ $data->title }}</h4>
                     <span class="blog_meta">{{ $data->date }}</span>
-                    <a class="blog_more" href="{{ route('readblog') }}">Read more</a>
+                    <a class="blog_more" href="{{ url('readblog/'.$data->id)}}">Read more</a>
                 </div>
                 </div>
             </div>
