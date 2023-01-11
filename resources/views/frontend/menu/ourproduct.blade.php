@@ -5,47 +5,54 @@ Clothing
 @endsection
 
 <!-- Slider -->
-<div class="main_slider" style="background-image:url(assets/images/slider_1.jpg)" id="clothing">
+@foreach ( $clothing as $data )
+<div class="main_slider" style="background-image:url({{ $data->image }})" id="clothing">
     <div class="container fill_height">
         <div class="row align-items-center fill_height">
             <div class="col">
                 <div class="main_slider_abt" id="aboutus">
-                    <h1>Clothing</h1>
-                    <h6>We help you to change your outfit fashion and be more confident with yourself. We help you to change your outfit fashion and be more confident with yourself. We help you to change your outfit fashion and be more confident with yourself. We help you to change your outfit fashion and be more confident with yourself. We help you to change your outfit fashion and be more confident with yourself.</h6>
+                    <h1>{{ $data->name }}</h1>
+                    <h6>{{ $data->description }}</h6>
                 {{-- <div class="red_button shop_now_button"><a href="#">shop now</a></div> --}}
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endforeach
 
-<div class="main_slider" style="background-image:url(assets/images/slider_1.jpg)" id="handbag">
+@foreach ( $handbag as $data )
+<div class="main_slider" style="background-image:url({{ $data->image }})" id="clothing">
     <div class="container fill_height">
         <div class="row align-items-center fill_height">
             <div class="col">
                 <div class="main_slider_abt" id="aboutus">
-                    <h1>Handbag</h1>
-                    <h6>We help you to change your outfit fashion and be more confident with yourself. We help you to change your outfit fashion and be more confident with yourself. We help you to change your outfit fashion and be more confident with yourself. We help you to change your outfit fashion and be more confident with yourself. We help you to change your outfit fashion and be more confident with yourself. </h6>
+                    <h1>{{ $data->name }}</h1>
+                    <h6>{{ $data->description }}</h6>
                 {{-- <div class="red_button shop_now_button"><a href="#">shop now</a></div> --}}
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endforeach
 
-<div class="main_slider" style="background-image:url(assets/images/slider_1.jpg)" id="skincare">
+@foreach ( $skincare as $data )
+<div class="main_slider" style="background-image:url({{ $data->image }})" id="clothing">
     <div class="container fill_height">
         <div class="row align-items-center fill_height">
             <div class="col">
                 <div class="main_slider_abt" id="aboutus">
-                    <h1>Skincare</h1>
-                    <h6>We help you to change your outfit fashion and be more confident with yourself. We help you to change your outfit fashion and be more confident with yourself. We help you to change your outfit fashion and be more confident with yourself. We help you to change your outfit fashion and be more confident with yourself. We help you to change your outfit fashion and be more confident with yourself.</h6>
+                    <h1>{{ $data->name }}</h1>
+                    <h6>{{ $data->description }}</h6>
                 {{-- <div class="red_button shop_now_button"><a href="#">shop now</a></div> --}}
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endforeach
+
 <div class="blogs">
     <div class="container">
         <div class="row blogs_container">
