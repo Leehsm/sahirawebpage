@@ -10,7 +10,9 @@ use App\Models\ContactUs;
 use App\Models\FAQ;
 use App\Models\OurProduct;
 use App\Models\OurTeam;
+use App\Models\BGImage;
 use App\Models\Membership;
+use App\Models\MembershipFE;
 
 use Image;
 use Auth;
@@ -26,10 +28,11 @@ class BackendController extends Controller
         $contactus = ContactUs::latest()->get();
         $faq = FAQ::latest()->get();
         $membership = Membership::latest()->get();
+        $membershipFE = MembershipFE::latest()->get();
         $ourproduct = OurProduct::latest()->get();
         $ourteam = OurTeam::latest()->get();
 
-        return view('admin.dashboard', compact('aboutus','blog','contactus','faq','membership','ourproduct', 'ourteam'));
+        return view('admin.dashboard', compact('aboutus','blog','contactus','faq','membership', 'membershipFE','ourproduct', 'ourteam'));
     }
     //About Us
     Public function AboutUsView(){
@@ -258,19 +261,28 @@ class BackendController extends Controller
 
     Public function ContactUsStore(Request $request){
 
-        $image = $request->file('image');
-    	$name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-    	Image::make($image)->save('upload/'.$name_gen);
-    	$save_url = 'upload/'.$name_gen;
+        if($request->file('image')){
+            $image = $request->file('image');
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->save('upload/'.$name_gen);
+            $save_url = 'upload/'.$name_gen;
 
-	    $contactus_id = ContactUs::insertGetId([
-            'email' => $request->email,
-            'phone_1' => $request->phone1,
-            'phone_2' => $request->phone2,
-            'image' => $save_url,
-            // 'created_by' => Auth::id(),
-            'created_at' => Carbon::now(),
-    	]);
+            $contactus_id = ContactUs::insertGetId([
+                'name' => $request->name,
+                'desc_link' => $request->detail,
+                'image' => $save_url,
+                'created_at' => Carbon::now(),
+            ]);
+        }
+        else{
+
+            $contactus_id = ContactUs::insertGetId([
+                'name' => $request->name,
+                'desc_link' => $request->detail,
+                'created_at' => Carbon::now(),
+            ]);
+
+        }
 
 	    $notification = array(
 			'message' => 'Contact Us Inserted Successfully',
@@ -302,9 +314,8 @@ class BackendController extends Controller
             $save_url = 'upload/'.$name_gen;
 
             ContactUs::findOrFail($contactus_id)->update([
-                'email' => $request->email,
-                'phone_1' => $request->phone1,
-                'phone_2' => $request->phone2,
+                'name' => $request->name,
+                'desc_link' => $request->detail,
                 'image' => $save_url,
                 'updated_at' => Carbon::now(),
             ]);
@@ -319,9 +330,8 @@ class BackendController extends Controller
         }else{
 
             ContactUs::findOrFail($contactus_id)->update([
-                'email' => $request->email,
-                'phone_1' => $request->phone1,
-                'phone_2' => $request->phone2,
+                'name' => $request->name,
+                'desc_link' => $request->detail,
                 'updated_at' => Carbon::now(),
             ]);
 
@@ -338,10 +348,17 @@ class BackendController extends Controller
     Public function ContactUsDelete($id){
         
         $contactus = ContactUs::findOrFail($id);
-        $img = $aboutus->image;
-        unlink($img);
+        $img = $contactus->image;
+        if(!Empty($img)){
 
-        ContactUs::findOrFail($id)->delete();
+            unlink($img);
+            ContactUs::findOrFail($id)->delete();
+
+        }else{
+
+            ContactUs::findOrFail($id)->delete();
+
+        }
 
         $notification = array(
             'message' => 'Contact Us Deleted Successfully',
@@ -414,6 +431,109 @@ class BackendController extends Controller
 
         $notification = array(
             'message' => 'FAQ Deleted Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
+        
+    }
+
+    //MembershipFE
+    Public function MembershipFEView(){
+
+        $membershipFE = MembershipFE::latest()->get();
+        return view('admin.menu.membershipFE.view', compact('membershipFE'));
+
+    }
+
+    Public function MembershipFEAdd(){
+
+        return view('admin.menu.membershipFE.add');
+
+    }
+
+    Public function MembershipFEStore(Request $request){
+        
+        if($request->file('image')){
+            $image = $request->file('image');
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->save('upload/'.$name_gen);
+            $save_url = 'upload/'.$name_gen;
+
+            $contactus_id = MembershipFE::insertGetId([
+                'desc' => $request->desc,
+                'image' => $save_url,
+                'created_at' => Carbon::now(),
+            ]);
+        }
+        else{
+
+            $contactus_id = MembershipFE::insertGetId([
+                'desc' => $request->desc,
+                'created_at' => Carbon::now(),
+            ]);
+
+        }
+
+	    $notification = array(
+			'message' => 'Membership Inserted Successfully',
+			'alert-type' => 'success'
+		);
+
+		return redirect()->route('membershipFE.all')->with($notification);
+
+    }
+
+    Public function MembershipFEEdit($id){
+
+        $membershipFE = MembershipFE::findOrFail($id);
+        return view('admin.menu.mwmbershipFE.edit', compact('membershipFE'));
+        
+    }
+
+    Public function MembershipFEUpdate(Request $request){
+
+        $membershipFE_id = $request->id;
+        $old_img = $request->old_image;
+
+        if($request->file('image')){
+        
+            unlink($old_img);
+            $image = $request->file('image');
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->save('upload/'.$name_gen);
+            $save_url = 'upload/'.$name_gen;
+
+            MembershipFE::findOrFail($membershipFE_id)->update([
+                'desc' => $request->name,
+                'image' => $save_url,
+                'updated_at' => Carbon::now(),
+            ]);
+            
+        }else{
+
+            MembershipFE::findOrFail($membershipFE_id)->update([
+                'name' => $request->name,
+                'desc_link' => $request->detail,
+                'updated_at' => Carbon::now(),
+            ]);
+        }
+
+        $notification = array(
+            'message' => 'Membership Updated Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->route('membershipFE.all')->with($notification);
+        
+    }
+
+    Public function MembershipFEDelete($id){
+
+        MembershipFE::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Membership Deleted Successfully',
             'alert-type' => 'info'
         );
 
@@ -558,7 +678,7 @@ class BackendController extends Controller
             OurProduct::findOrFail($ourproduct_id)->update([
                 'name' => $request->name,
                 'description' => $request->description,
-                'image' => $request->save_url,
+                'image' => $save_url,
                 'updated_at' => Carbon::now(),
             ]);
 
@@ -696,6 +816,108 @@ class BackendController extends Controller
 
         $notification = array(
             'message' => 'Our Team Deleted Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
+
+    }
+
+    //BG
+    Public function BGView(){
+
+        $bg = BGImage::latest()->get();
+        return view('admin.menu.bg.view', compact('bg'));
+
+    }
+
+    Public function BGAdd(){
+
+        return view('admin.menu.bg.add');
+
+    }
+
+    Public function BGStore(Request $request){
+
+        $image = $request->file('image');
+    	$name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+    	Image::make($image)->save('upload/'.$name_gen);
+    	$save_url = 'upload/'.$name_gen;
+
+	    $ourteam_id = BGImage::insertGetId([
+            'name' => $request->name,
+            'description' => $request->description,
+            'image' => $save_url,
+            'created_at' => Carbon::now(),
+    	]);
+
+	    $notification = array(
+			'message' => 'BG Inserted Successfully',
+			'alert-type' => 'success'
+		);
+
+		return redirect()->route('bg.all')->with($notification);        
+        
+    }
+
+    Public function BGEdit($id){
+        
+        $bg = BGImage::findOrFail($id);
+        return view('admin.menu.bg.edit', compact('bg'));
+        
+    }
+
+    Public function BGUpdate(Request $request){
+
+        $bg_id = $request->id;
+        $old_img = $request->old_image;
+
+        if($request->file('image')){
+        
+            unlink($old_img);
+            $image = $request->file('image');
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->save('upload/'.$name_gen);
+            $save_url = 'upload/'.$name_gen;
+
+            BGImage::findOrFail($bg_id)->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'image' => $save_url,
+                'updated_at' => Carbon::now(),
+            ]);
+
+            $notification = array(
+                'message' => 'BG Updated Successfully',
+                'alert-type' => 'info'
+            );
+
+            return redirect()->route('bg.all')->with($notification);
+
+        }else{
+
+            BGImage::findOrFail($bg_id)->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'updated_at' => Carbon::now(),
+            ]);
+
+            $notification = array(
+                'message' => 'BG Updated Successfully',
+                'alert-type' => 'info'
+            );
+
+            return redirect()->route('bg.all')->with($notification);
+        }
+        
+    }
+
+    Public function BGDelete($id){
+        
+        BGImage::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'BG Deleted Successfully',
             'alert-type' => 'info'
         );
 
