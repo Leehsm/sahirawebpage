@@ -12,7 +12,7 @@
                 <ul class="top_nav_menu">
                 <!-- Currency / Language / My Account -->
                 <li class="currency">
-                    <a href="#">
+                    <a href="https://www.outfitbysahira.com">
                     outfitbysahira.com
                     <i class="fa fa-shopping-bag"></i>
                     </a>
