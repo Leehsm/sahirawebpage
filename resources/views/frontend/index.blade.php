@@ -5,7 +5,7 @@ Sahira
 @endsection
 
 <!-- Slider -->
-<div class="main_slider" style="background-image:url(assets/images/test2.png)">
+<div class="main_slider" style="background-image:url(assets/images/main.png)">
     <div class="container fill_height">
         <div class="row align-items-center fill_height">
         <div class="col">
@@ -26,7 +26,7 @@ Sahira
         <div class="row align-items-center" id="aboutus">
             <div class="col-lg-6">
             <div class="deal_ofthe_week_img">
-                <img src="assets/images/test.png" alt="">
+                <img src="{{ $data->image }}" alt="">
             </div>
             </div>
             <div class="col-lg-6 text-right deal_ofthe_week_col">
@@ -93,12 +93,13 @@ Sahira
 </div>
 
 <!-- Contact -->
+@foreach ($contactus as $data )
 <div class="deal_ofthe_week">
     <div class="container">
         <div class="row align-items-center" id="contactus">
             <div class="col-lg-6">
             <div class="deal_ofthe_week_img">
-                <img src="assets/images/test2.png" alt="">
+                <img src="{{ $data->image }}" alt="">
             </div>
             </div>
             <div class="col-lg-6 text-right deal_ofthe_week_col">
@@ -106,22 +107,27 @@ Sahira
                 <div class="section_title">
                 <h2>Contact Us</h2>
                 </div>
-                
+                <br>
+                <div class=".main_slider_abt">
+                    <h6>{{ $data->desc_link }}</h6>
+                </div>                
                 <div class="red_button deal_ofthe_week_button"><a href="{{ route('contactus') }}">More</a></div>
             </div>
             </div>
         </div>
     </div>
 </div>
+@endforeach
 
 
 <!-- Membership -->
+@foreach ($membership as $data)
 <div class="deal_ofthe_week">
     <div class="container">
         <div class="row align-items-center" id="membership">
         <div class="col-lg-6">
             <div class="deal_ofthe_week_img">
-            <img src="assets/images/test3.png" alt="">
+            <img src="{{ $data->image }}" alt="">
             </div>
         </div>
         <div class="col-lg-6 text-right deal_ofthe_week_col">
@@ -129,13 +135,17 @@ Sahira
             <div class="section_title">
                 <h2>Membership</h2>
             </div>
-            
+            <br>
+            <div class=".main_slider_abt">
+                <h6>{{ $data->desc }}</h6>
+            </div>            
             <div class="red_button deal_ofthe_week_button"><a href="{{ route('membership') }}">Register Now</a></div>
             </div>
         </div>
         </div>
     </div>
 </div>
+@endforeach
 
 <!-- Blogs -->
 <div class="blogs">
@@ -155,7 +165,7 @@ Sahira
                 <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
                     <h4 class="blog_title">{{ $data->title }}</h4>
                     <span class="blog_meta">{{ $data->date }}</span>
-                    <a class="blog_more" href="{{ route('readblog') }}">Read more</a>
+                    <a class="blog_more" href="{{ url('readblog/'.$data->id)}}">Read more</a>
                 </div>
                 </div>
             </div>
