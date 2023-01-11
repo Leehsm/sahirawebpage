@@ -39,12 +39,14 @@ Route::middleware(['auth:admin'])->group(function(){
     Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 
     //background images for all
-    Route::get('/view', [BackendController::class, 'BGView'])->name('bg.all');
-    Route::get('/add', [BackendController::class, 'BGAdd'])->name('bg.add');
-    Route::post('/store', [BackendController::class, 'BGStore'])->name('bg.store');
-    Route::get('/edit/{id}', [BackendController::class, 'BGEdit'])->name('bg.edit');
-    Route::post('/update', [BackendController::class, 'BGUpdate'])->name('bg.update');
-    Route::get('/delete/{id}', [BackendController::class, 'BGDelete'])->name('bg.delete');
+    Route::prefix('bg')->group(function(){
+        Route::get('/view', [BackendController::class, 'BGView'])->name('bg.all');
+        Route::get('/add', [BackendController::class, 'BGAdd'])->name('bg.add');
+        Route::post('/store', [BackendController::class, 'BGStore'])->name('bg.store');
+        Route::get('/edit/{id}', [BackendController::class, 'BGEdit'])->name('bg.edit');
+        Route::post('/update', [BackendController::class, 'BGUpdate'])->name('bg.update');
+        Route::get('/delete/{id}', [BackendController::class, 'BGDelete'])->name('bg.delete');
+    });
 
     //AboutUS
     Route::prefix('aboutus')->group(function(){
@@ -144,4 +146,4 @@ Route::get('/membership', [FrontendController::class, 'membership'])->name('memb
 Route::post('membership/register', [FrontendController::class, 'membershipRegister'])->name('membership.register');
 Route::get('/faq', [FrontendController::class, 'faq'])->name('faq');
 Route::get('/blog', [FrontendController::class, 'blog'])->name('blog');
-Route::get('/readblog', [FrontendController::class, 'readblog'])->name('readblog');
+Route::get('/readblog/{id}', [FrontendController::class, 'readblog'])->name('readblog');
