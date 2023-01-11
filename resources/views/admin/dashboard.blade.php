@@ -185,6 +185,33 @@ float:right;">
     </tbody>
   </table>
 
+  <h4>MembershipFE</h4>
+  <table class="table table-success table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Description</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach($membershipFE as $data)
+      <tr>
+        <td width="15%"><img src="{{ asset($data->image) }}" style="width: 100px; height: 100px;"></td> 
+        <td scope="row">{{ $data->desc }}</td> 
+        <td width="15%">   
+          <a href="{{ route('membershipFE.edit', $data->id) }}" class="btn btn-info btn-sm" title="Edit Data">
+            Edit 
+          </a>
+          <a href="{{ route('membershipFE.delete', $data->id) }}" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
+            Delete
+          </a>
+        </td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
+
   <h4>Membership</h4>
   <table class="table table-success table-striped">
     <thead>
