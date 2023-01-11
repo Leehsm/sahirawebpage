@@ -15,16 +15,12 @@ Add Contact Us
             <input type="file" class="form-control" name="image" id="image">
         </div>
         <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" name="email" id="email">
+            <label for="name" class="form-label">Name (location/contact/social/operation hour/menu)</label>
+            <input type="text" class="form-control" name="name" id="name">
         </div>
         <div class="mb-3">
-            <label for="phone1" class="form-label">Contact No 1</label>
-            <input type="text" class="form-control" name="phone1" id="phone1">
-        </div>
-        <div class="mb-3">
-            <label for="phone2" class="form-label">Contact No 2</label>
-            <input type="text" class="form-control" name="phone2" id="phone2">
+            <label for="detail" class="form-label">Detail and Link</label>
+            <input type="text" class="form-control" name="detail" id="detail">
         </div>
         <div class="text-xs-right">
             <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New">					 

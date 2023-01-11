@@ -21,9 +21,8 @@ Contact Us
     <thead>
       <tr>
         <th scope="col">Image</th>
-        <th scope="col">Email</th>
-        <th scope="col">Phone 1</th>
-        <th scope="col">Phone 2</th>
+        <th scope="col">Name</th>
+        <th scope="col">Detail and Link</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -31,9 +30,8 @@ Contact Us
       @foreach($contactus as $data)
       <tr>
         <td width="15%"><img src="{{ asset($data->image) }}" style="width: 100px; height: 100px;"></td> 
-        <td width="15%">{{ $data->email }}</td> 
-        <td width="15%">{{ $data->phone_1 }}</td>  
-        <td width="15%">{{ $data->phone_2 }}</td>  
+        <td>{{ $data->name }}</td> 
+        <td>{{ $data->desc_link }}</td>  
         <td width="15%">   
           <a href="{{ route('contactus.edit', $data->id) }}" class="btn btn-info btn-sm" title="Edit Data">
             Edit 
