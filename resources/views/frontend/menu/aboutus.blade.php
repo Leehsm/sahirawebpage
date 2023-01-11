@@ -5,16 +5,28 @@ About Us
 @endsection
 
 <!-- Slider -->
-<div class="main_slider" style="background-image:url(assets/images/slider_1.jpg)">
+@foreach ($bg as $data )
+<div class="main_slider" style="background-image:url({{ $data->image }})">
     <div class="container fill_height">
         <div class="row align-items-center fill_height">
             <div class="col">
-                @foreach ( $aboutus as $data)
                 <div class="main_slider_abt" id="aboutus">
                     <h1>About Us</h1>
                     <h6>{{$data->description}} 
                     </h6>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
+<div class="blogs">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center" id="blog">
+                @foreach ( $aboutus as $data)
+                    <h6>{{$data->description}} </h6>
                 @endforeach
             </div>
         </div>
