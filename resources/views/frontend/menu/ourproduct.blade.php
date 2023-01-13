@@ -12,17 +12,24 @@ Clothing
             <div class="col">
                 <div class="main_slider_abt" id="aboutus">
                     <h1>{{ $data->name }}</h1>
-                    <h6>{{ $data->description }}</h6>
                 {{-- <div class="red_button shop_now_button"><a href="#">shop now</a></div> --}}
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="benefit">
+    <div class="container">
+        <div class="row benefit_row">
+            <h6>{{ $data->description }}</h6>
         </div>
     </div>
 </div>
 @endforeach
 
 @foreach ( $handbag as $data )
-<div class="main_slider" style="background-image:url({{ $data->image }})" id="clothing">
+<div class="main_slider2" style="background-image:url({{ $data->image }})" id="clothing">
     <div class="container fill_height">
         <div class="row align-items-center fill_height">
             <div class="col">
@@ -35,10 +42,17 @@ Clothing
         </div>
     </div>
 </div>
+<div class="benefit">
+    <div class="container">
+        <div class="row benefit_row">
+            <h6>{{ $data->description }}</h6>
+        </div>
+    </div>
+</div>
 @endforeach
 
 @foreach ( $skincare as $data )
-<div class="main_slider" style="background-image:url({{ $data->image }})" id="clothing">
+<div class="main_slider2" style="background-image:url({{ $data->image }})" id="clothing">
     <div class="container fill_height">
         <div class="row align-items-center fill_height">
             <div class="col">
@@ -48,6 +62,13 @@ Clothing
                 {{-- <div class="red_button shop_now_button"><a href="#">shop now</a></div> --}}
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<div class="benefit">
+    <div class="container">
+        <div class="row benefit_row">
+            <h6>{{ $data->description }}</h6>
         </div>
     </div>
 </div>
