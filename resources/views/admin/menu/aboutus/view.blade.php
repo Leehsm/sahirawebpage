@@ -4,11 +4,16 @@
 About Us
 @endsection
 
-<main class="col-md-8 ms-sm-auto col-lg-10 px-md-4">  
+<main class="col-md-8 ms-sm-auto col-lg-10 px-md-4" style="width: -webkit-calc(100% - 200px); width: calc(100% - 200px); float:right;">  
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">About Us</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group me-2" >
+        <button  type="button" class="btn btn-sm btn-outline-secondary">
+          <a href="{{ route('aboutus.add') }}" class="d-flex align-items-center text-black text-decoration-none">
+            ADD BG IMAGE
+          </a>
+        </button>
         <button  type="button" class="btn btn-sm btn-outline-secondary">
           <a href="{{ route('aboutus.add') }}" class="d-flex align-items-center text-black text-decoration-none">
             ADD NEW
@@ -37,9 +42,9 @@ About Us
           <a href="{{ route('aboutus.delete', $data->id) }}" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
             Delete
           </a>
-      </td>
-      @endforeach
+        </td>
       </tr>
+      @endforeach
     </tbody>
   </table>
 </main>

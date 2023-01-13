@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 
 
 use App\Http\Controllers\BackendController;
+use App\Http\Controllers\FrontendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,18 +23,30 @@ Route::get('/', function () {
 });
 
 //Admin
-Route::middleware(['auth:admin'])->group(function(){
+Route::group(['prefix'=>'admin', 'middleware'=>['admin:admin']], function(){
+    Route::get('/login', [AdminController::class, 'loginForm']);
+    Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
+});
 
-    Route::group(['prefix'=>'admin', 'middleware'=>['admin:admin']], function(){
-        Route::get('/login', [AdminController::class, 'loginForm']);
-        Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
-    });
+Route::middleware(['auth:admin'])->group(function(){
 
     Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');
 
+    
+    Route::get('/admin/dashboard', [BackendController::class, 'index']);
     Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+
+    //background images for all
+    Route::prefix('bg')->group(function(){
+        Route::get('/view', [BackendController::class, 'BGView'])->name('bg.all');
+        Route::get('/add', [BackendController::class, 'BGAdd'])->name('bg.add');
+        Route::post('/store', [BackendController::class, 'BGStore'])->name('bg.store');
+        Route::get('/edit/{id}', [BackendController::class, 'BGEdit'])->name('bg.edit');
+        Route::post('/update', [BackendController::class, 'BGUpdate'])->name('bg.update');
+        Route::get('/delete/{id}', [BackendController::class, 'BGDelete'])->name('bg.delete');
+    });
 
     //AboutUS
     Route::prefix('aboutus')->group(function(){
@@ -85,6 +98,16 @@ Route::middleware(['auth:admin'])->group(function(){
         Route::get('/delete/{id}', [BackendController::class, 'MembershipDelete'])->name('membership.delete');
     });
 
+    //MembershipFE
+    Route::prefix('membershipFE')->group(function(){
+        Route::get('/view', [BackendController::class, 'MembershipFEView'])->name('membershipFE.all');
+        Route::get('/add', [BackendController::class, 'MembershipFEAdd'])->name('membershipFE.add');
+        Route::post('/store', [BackendController::class, 'MembershipFEStore'])->name('membershipFE.store');
+        Route::get('/edit/{id}', [BackendController::class, 'MembershipFEEdit'])->name('membershipFE.edit');
+        Route::post('/update', [BackendController::class, 'MembershipFEUpdate'])->name('membershipFE.update');
+        Route::get('/delete/{id}', [BackendController::class, 'MembershipFEDelete'])->name('membershipFE.delete');
+    });
+
     //OurProduct
     Route::prefix('ourproduct')->group(function(){
         Route::get('/view', [BackendController::class, 'OurProductView'])->name('ourproduct.all');
@@ -95,10 +118,32 @@ Route::middleware(['auth:admin'])->group(function(){
         Route::get('/delete/{id}', [BackendController::class, 'OurProductDelete'])->name('ourproduct.delete');
     });
 
+    //OurTeam
+    Route::prefix('ourteam')->group(function(){
+        Route::get('/view', [BackendController::class, 'OurTeamView'])->name('ourteam.all');
+        Route::get('/add', [BackendController::class, 'OurTeamAdd'])->name('ourteam.add');
+        Route::post('/store', [BackendController::class, 'OurTeamStore'])->name('ourteam.store');
+        Route::get('/edit/{id}', [BackendController::class, 'OurTeamEdit'])->name('ourteam.edit');
+        Route::post('/update', [BackendController::class, 'OurTeamUpdate'])->name('ourteam.update');
+        Route::get('/delete/{id}', [BackendController::class, 'OurTeamDelete'])->name('ourteam.delete');
+    });
+
 });
 
 
 //User
-Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+
+Route::get('/', [FrontendController::class, 'index']);
+Route::get('/about-us', [FrontendController::class, 'aboutus'])->name('aboutus');
+Route::get('/our-product-skincare', [FrontendController::class, 'skincare'])->name('skincare');
+Route::get('/our-product-handbag', [FrontendController::class, 'handbag'])->name('handbag');
+Route::get('/our-product-outfit', [FrontendController::class, 'outfit'])->name('outfit');
+Route::get('/contact-us', [FrontendController::class, 'contactus'])->name('contactus');
+Route::get('/membership', [FrontendController::class, 'membership'])->name('membership');
+Route::post('membership/register', [FrontendController::class, 'membershipRegister'])->name('membership.register');
+Route::get('/faq', [FrontendController::class, 'faq'])->name('faq');
+Route::get('/blog', [FrontendController::class, 'blog'])->name('blog');
+Route::get('/readblog/{id}', [FrontendController::class, 'readblog'])->name('readblog');

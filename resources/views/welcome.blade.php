@@ -138,15 +138,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Template Main CSS File -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/owl.theme.default.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/main_styles.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
-    
-    
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.carousel.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.theme.default.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/animate.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/main_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive.css') }}">
     
     <!-- Template Main JS File -->
     <script src="assets/js/jquery-3.2.1.min.js"></script>
@@ -156,340 +154,42 @@
     <script src="assets/js/owl.carousel.js"></script>
     <script src="assets/js/easing.js"></script>
     <script src="assets/js/custom.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-<div class="super_container">
 
-<!-- Header -->
-<header class="header trans_300">
-    <!-- Top Navigation -->
-    <div class="top_nav">
-        <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-            <div class="top_nav_left">Shopping With Us Now</div>
-            </div>
-            <div class="col-md-6 text-right">
-            <div class="top_nav_right">
-                <ul class="top_nav_menu">
-                <!-- Currency / Language / My Account -->
-                <li class="currency">
-                    <a href="#">
-                    outfitbysahira.com
-                    <i class="fa fa-shopping-bag"></i>
-                    </a>
-                </li>
-                </ul>
-            </div>
-            </div>
-        </div>
-        </div>
+    <div class="super_container">
+    @include('frontend.layout.header')
+    @yield('frontend')
+    @include('frontend.layout.footer')
     </div>
-    <div class="main_nav_container">
-        <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-right">
-            <div class="logo_container">
-                <a href="#">Sahi<span>Ra</span></a>
-            </div>
-            <nav class="navbar">
-                <ul class="navbar_menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Our Product</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Membership</a></li>
-                </ul>
-                <div class="hamburger_container">
-                <i class="fa fa-bars" aria-hidden="true"></i>
-                </div>
-            </nav>
-            </div>
-        </div>
-        </div>
-    </div>
-</header>
 
-<div class="hamburger_menu">
-  <div class="hamburger_close"><i class="fa fa-times" aria-hidden="true"></i></div>
-  <div class="hamburger_menu_content text-right">
-    <ul class="menu_top_nav">
-      <li class="menu_item"><a href="#">Home</a></li>
-      <li class="menu_item"><a href="#aboutus">About Us</a></li>
-      <li class="menu_item"><a href="#">Our Product</a></li>
-      <li class="menu_item"><a href="#">Contact</a></li>
-      <li class="menu_item"><a href="#">Membership</a></li>
-      <li class="menu_item"><a href="#">Shopping With Us</a></li>
-    </ul>
-  </div>
-</div>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {{-- toastr notification --}}
+    <script>
+    @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type','info') }}"
+    switch(type){
+        case 'info':
+        toastr.info("{{ Session::get('message') }}");
+        break;
 
-<!-- Slider -->
-<div class="main_slider" style="background-image:url(assets/images/slider_1.jpg)">
-  <div class="container fill_height">
-    <div class="row align-items-center fill_height">
-      <div class="col">
-        <div class="main_slider_abt" id="aboutus">
-            <h1>Welcome To Sahira</h1>
-            <h6>We help you to change your outfit fashion and be more confident with yourself.</h6>
-          {{-- <div class="red_button shop_now_button"><a href="#">shop now</a></div> --}}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+        case 'success':
+        toastr.success("{{ Session::get('message') }}");
+        break;
 
-<!-- About Us -->
-<div class="deal_ofthe_week">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6">
-          <div class="deal_ofthe_week_img">
-            <img src="assets/images/deal_ofthe_week.png" alt="">
-          </div>
-        </div>
-        <div class="col-lg-6 text-right deal_ofthe_week_col">
-          <div class="deal_ofthe_week_content d-flex flex-column align-items-center float-right">
-            <div class="section_title">
-              <h2>About Us</h2>
-            </div>
-            <div class=".main_slider_abt">
-                <h6>About Us Get up to 30% Off New Arrivals</h6>
-            </div>
-            
-            <div class="red_button deal_ofthe_week_button"><a href="#">More</a></div>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
+        case 'warning':
+        toastr.warning("{{ Session::get('message') }}");
+        break;
 
-<!-- Our Product -->
-<div class="banner">
-    <div class="row">
-        <div class="col text-center">
-            <div class="section_title">
-                <h2>Our Product</h2>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="container">
-        <div class="row">
-        <div class="col-md-4">
-            <div class="banner_item align-items-center" style="background-image:url(assets/images/banner_1.jpg)">
-            <div class="banner_category">
-                <a href="#">Clothing</a>
-            </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="banner_item align-items-center" style="background-image:url(assets/images/banner_2.jpg)">
-            <div class="banner_category">
-                <a href="#">Handbag</a>
-            </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="banner_item align-items-center" style="background-image:url(assets/images/banner_3.jpg)">
-            <div class="banner_category">
-                <a href="#">Skincare</a>
-            </div>
-            </div>
-        </div>
-        </div>
-    </div>
-</div>
+        case 'error':
+        toastr.error("{{ Session::get('message') }}");
+        break;
+    }
 
-<!-- Contact -->
-<div class="deal_ofthe_week">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6">
-          <div class="deal_ofthe_week_img">
-            <img src="assets/images/deal_ofthe_week.png" alt="">
-          </div>
-        </div>
-        <div class="col-lg-6 text-right deal_ofthe_week_col">
-          <div class="deal_ofthe_week_content d-flex flex-column align-items-center float-right">
-            <div class="section_title">
-              <h2>Contact Us</h2>
-            </div>
-            
-            <div class="red_button deal_ofthe_week_button"><a href="#">Register Now</a></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<!-- Membership -->
-<div class="deal_ofthe_week">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-6">
-        <div class="deal_ofthe_week_img">
-          <img src="assets/images/deal_ofthe_week.png" alt="">
-        </div>
-      </div>
-      <div class="col-lg-6 text-right deal_ofthe_week_col">
-        <div class="deal_ofthe_week_content d-flex flex-column align-items-center float-right">
-          <div class="section_title">
-            <h2>Membership</h2>
-          </div>
-          
-          <div class="red_button deal_ofthe_week_button"><a href="#">Register Now</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Benefit -->
-{{-- <div class="benefit">
-  <div class="container">
-    <div class="row benefit_row">
-      <div class="col-lg-3 benefit_col">
-        <div class="benefit_item d-flex flex-row align-items-center">
-          <div class="benefit_icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
-          <div class="benefit_content">
-            <h6>free shipping</h6>
-            <p>Suffered Alteration in Some Form</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 benefit_col">
-        <div class="benefit_item d-flex flex-row align-items-center">
-          <div class="benefit_icon"><i class="fa fa-money" aria-hidden="true"></i></div>
-          <div class="benefit_content">
-            <h6>cach on delivery</h6>
-            <p>The Internet Tend To Repeat</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 benefit_col">
-        <div class="benefit_item d-flex flex-row align-items-center">
-          <div class="benefit_icon"><i class="fa fa-undo" aria-hidden="true"></i></div>
-          <div class="benefit_content">
-            <h6>45 days return</h6>
-            <p>Making it Look Like Readable</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 benefit_col">
-        <div class="benefit_item d-flex flex-row align-items-center">
-          <div class="benefit_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
-          <div class="benefit_content">
-            <h6>opening all week</h6>
-            <p>8AM - 09PM</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> --}}
-
-<!-- Blogs -->
-<div class="blogs">
-  <div class="container">
-    <div class="row">
-      <div class="col text-center">
-        <div class="section_title">
-          <h2>Latest Blogs</h2>
-        </div>
-      </div>
-    </div>
-    <div class="row blogs_container">
-      <div class="col-lg-4 blog_item_col">
-        <div class="blog_item">
-          <div class="blog_background" style="background-image:url(assets/images/blog_1.jpg)"></div>
-          <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
-            <h4 class="blog_title">Here are the trends I see coming this fall</h4>
-            <span class="blog_meta">by admin | dec 01, 2021</span>
-            <a class="blog_more" href="#">Read more</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 blog_item_col">
-        <div class="blog_item">
-          <div class="blog_background" style="background-image:url(assets/images/blog_2.jpg)"></div>
-          <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
-            <h4 class="blog_title">Here are the trends I see coming this fall</h4>
-            <span class="blog_meta">by admin | dec 01, 2021</span>
-            <a class="blog_more" href="#">Read more</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 blog_item_col">
-        <div class="blog_item">
-          <div class="blog_background" style="background-image:url(assets/images/blog_3.jpg)"></div>
-          <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
-            <h4 class="blog_title">Here are the trends I see coming this fall</h4>
-            <span class="blog_meta">by admin | dec 01, 2021</span>
-            <a class="blog_more" href="#">Read more</a>
-          </div>
-        </div>
-      </div>
-      <div class="red_button deal_ofthe_week_button" style="margin: auto; top: 10px;"><a href="#">More Blogs</a></div>
-    </div>
-  </div>
-</div>
-
-<!-- Newsletter -->
-<div class="newsletter">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
-          <h4>Newsletter</h4>
-          <p>Subscribe to our newsletter to get our latest promotion deals</p>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <form action="post">
-          <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
-            <input id="newsletter_email" type="email" placeholder="Your email" required="required" data-error="Valid email is required.">
-            <button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">subscribe</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Footer -->
-<footer class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
-          <ul class="footer_nav">
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">FAQs</a></li>
-            <li><a href="#">Contact us</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
-          <ul>
-            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-            <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-            <li><a href="#"><i class="fa fa-tumblr" aria-hidden="true"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="footer_nav_container">
-          <div class="cr">©2022 All Rights Reserverd. Sahira</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-</div>
+    @endif
+    </script>
 </body>
 </html>

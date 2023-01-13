@@ -51,6 +51,10 @@ COLOR PALETTE
 	margin: 0;
 	padding: 0;
 }
+html 
+{
+	scroll-behavior: smooth;
+}
 body
 {
 	font-family: 'Poppins', sans-serif;
@@ -822,11 +826,20 @@ section
 .main_slider
 {
 	width: 100%;
-	height: 700px;
+	height: 500px;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
 	margin-top: 150px;
+}
+.main_slider2
+{
+	width: 100%;
+	height: 500px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	margin-top: 50px;
 }
 .main_slider_content
 {
@@ -846,12 +859,16 @@ section
 
 .main_slider_abt
 {
-	width: 60%;
+	width: 100%;
+	text-align: center;
 }
 .main_slider_abt h6
 {
 	font-weight: 400;
 	margin-bottom: 19;
+	text-align: center;
+	background-color: #ffffff4e;
+	padding: 6px;
 }
 .main_slider_abt h1
 {
@@ -1236,6 +1253,7 @@ section
 .deal_ofthe_week_img
 {
 	height: 540px;
+	margin-left: auto;
 }
 .deal_ofthe_week_img img
 {
@@ -1244,6 +1262,7 @@ section
 .deal_ofthe_week_content
 {
 	height: 100%;
+	text-align:justify;
 }
 .section_title
 {
@@ -1405,6 +1424,10 @@ section
 {
 	margin-top: 74px;
 }
+.benefit h6
+{
+	text-align: center;
+}
 .benefit_row
 {
 	padding-left: 15px;
@@ -1456,16 +1479,18 @@ section
 
 .blogs
 {
-	margin-top: 72px;
+	margin-top: 30px;
 }
 .blogs_container
 {
-	margin-top: 53px;
+	/* margin-top: 30px; */
 }
 .blog_item
 {
 	height: 255px;
 	width: 100%;
+	margin-top: 17px;
+	margin-bottom: 17px;
 }
 .blog_background
 {
@@ -1698,4 +1723,149 @@ section
 .footer_social ul li a:hover
 {
 	color: #fe4c50;
+}
+
+/*********************************
+Membership
+*********************************/
+
+.membership
+{
+	width: 100%;
+	/* background: #cac9c9; */
+	margin-top: 15px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.membership_text
+{
+	height: 120px;
+}
+.membership_text h4
+{
+	margin-bottom: 0px;
+	line-height: 24px;
+}
+.membership_text p
+{
+	margin-bottom: 0px;
+	line-height: 1.7;
+	color: #51545f;
+}
+.membership_form
+{
+	height: 50px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+#membership_email
+{
+	width: 300px;
+	height: 46px;
+	background: #f0f1f1;
+	border: none;
+	padding-left: 20px;
+}
+#membership_email:focus
+{
+	border: solid 1px #7f7f7f !important;
+	box-shadow: none !important;
+}
+:focus
+{
+	outline: none !important;
+}
+#membership_email::-webkit-input-placeholder
+{
+	font-size: 14px !important;
+	font-weight: 400;
+	color: #b2b4ba !important;
+}
+#membership_email:-moz-placeholder /* older Firefox*/
+{
+	font-size: 14px !important;
+	font-weight: 400;
+	color: #b9b4c7 !important;
+}
+#membership_email::-moz-placeholder /* Firefox 19+ */
+{
+	font-size: 14px !important;
+	font-weight: 400;
+	color: #b9b4c7 !important;
+}
+#membership_email:-ms-input-placeholder
+{
+	font-size: 14px !important;
+	font-weight: 400;
+	color: #b9b4c7 !important;
+}
+#membership_email::input-placeholder
+{
+	font-size: 14px !important;
+	font-weight: 400;
+	color: #b9b4c7 !important;
+}
+.membership_submit_btn
+{
+	width: 160px;
+	height: 46px;
+	border: none;
+	background: #fe4c50;
+	color: #FFFFFF;
+	font-size: 14px;
+	font-weight: 500;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+.membership_submit_btn:hover
+{
+	background: #FE7C7F;
+}
+
+/*********************************
+Main Slider Blog
+*********************************/
+
+.main_slider_blog
+{
+	width: 100%;
+	height: auto;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	margin-top: 150px;
+}
+.main_slider_blog_content
+{
+	width: 60%;
+}
+.main_slider_blog_content h6
+{
+	font-weight: 500;
+	text-transform: uppercase;
+	margin-bottom: 29px;
+}
+.main_slider_blog_content h1
+{
+	font-weight: 400;
+	line-height: 1;
+}
+
+.main_slider_abt_blog
+{
+	width: auto;
+}
+.main_slider_abt_blog img
+{
+	width: 80%;
+}
+.main_slider_abt_blog h6
+{
+	font-weight: 400;
+	margin-bottom: 19;
+}
+.main_slider_abt_blog h2
+{
+	font-weight: 200;
+	line-height: 1;
 }

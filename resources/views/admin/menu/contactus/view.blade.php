@@ -4,7 +4,7 @@
 Contact Us
 @endsection
 
-<main class="col-md-8 ms-sm-auto col-lg-10 px-md-4">
+<main class="col-md-8 ms-sm-auto col-lg-10 px-md-4" style="width: -webkit-calc(100% - 200px); width: calc(100% - 200px); float:right;">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Contact Us</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
@@ -20,22 +20,28 @@ Contact Us
   <table class="table table-success table-striped">
     <thead>
       <tr>
-        <th scope="col">Description</th>
+        <th scope="col">Image</th>
+        <th scope="col">Name</th>
+        <th scope="col">Detail and Link</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
+      @foreach($contactus as $data)
       <tr>
-        <td scope="row">1</td>  
+        <td width="15%"><img src="{{ asset($data->image) }}" style="width: 100px; height: 100px;"></td> 
+        <td>{{ $data->name }}</td> 
+        <td>{{ $data->desc_link }}</td>  
         <td width="15%">   
-          <a href="#" class="btn btn-info btn-sm" title="Edit Data">
+          <a href="{{ route('contactus.edit', $data->id) }}" class="btn btn-info btn-sm" title="Edit Data">
             Edit 
           </a>
-          <a href="#" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
+          <a href="{{ route('contactus.delete', $data->id) }}" class="btn btn-danger btn-sm" title="Delete Data" id="delete">
             Delete
           </a>
-      </td>
+        </td>
       </tr>
+      @endforeach
     </tbody>
   </table>
 </main>
