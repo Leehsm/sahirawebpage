@@ -31,6 +31,6 @@ class MembershipMail extends Mailable
     public function build()
     {
         $membership_reg = $this->membership_reg;
-        return $this->from('gamesajee123@gmail.com')->view('mail.membership_reg',compact('membership_reg'))->subject('Thank you for register as a Sahira member');
+        return $this->from('noreply@outfitbysahira.com')->view('mail.membership_reg',compact('membership_reg'))->subject('Thank you for register as a Sahira member');
     }
 }
