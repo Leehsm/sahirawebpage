@@ -487,7 +487,7 @@ class BackendController extends Controller
     Public function MembershipFEEdit($id){
 
         $membershipFE = MembershipFE::findOrFail($id);
-        return view('admin.menu.mwmbershipFE.edit', compact('membershipFE'));
+        return view('admin.menu.membershipFE.edit', compact('membershipFE'));
         
     }
 
@@ -505,7 +505,7 @@ class BackendController extends Controller
             $save_url = 'upload/'.$name_gen;
 
             MembershipFE::findOrFail($membershipFE_id)->update([
-                'desc' => $request->name,
+                'desc' => $request->desc,
                 'image' => $save_url,
                 'updated_at' => Carbon::now(),
             ]);
@@ -513,8 +513,7 @@ class BackendController extends Controller
         }else{
 
             MembershipFE::findOrFail($membershipFE_id)->update([
-                'name' => $request->name,
-                'desc_link' => $request->detail,
+                'desc' => $request->desc,
                 'updated_at' => Carbon::now(),
             ]);
         }
@@ -578,7 +577,7 @@ class BackendController extends Controller
     Public function MembershipEdit($id){
 
         $membership = Membership::findOrFail($id);
-        return view('admin.menu.mwmbership.edit', compact('membership'));
+        return view('admin.menu.membership.edit', compact('membership'));
         
     }
 

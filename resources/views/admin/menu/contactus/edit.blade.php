@@ -26,7 +26,7 @@ Edit Contact Us
             <input type="text" class="form-control" name="detail" id="detail" value="{{ $contactus->desc_link }}">
         </div>
         <div class="text-xs-right">
-            <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New">					 
+            <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update">					 
         </div>
     </form>
 </main>

@@ -8,7 +8,7 @@ Edit Membership
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Edit Membership</h1>
     </div>
-    <form method="post" action="{{ route('membership.store') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('membership.update') }}" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id" value="{{ $membership->id }}">
         <div class="mb-3">
@@ -32,7 +32,7 @@ Edit Membership
             <input type="text" class="form-control" name="address" id="address" value="{{ $membership->address }}">
         </div>
         <div class="text-xs-right">
-            <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New">					 
+            <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update">					 
         </div>
     </form>
 </main>

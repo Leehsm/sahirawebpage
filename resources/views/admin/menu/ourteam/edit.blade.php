@@ -8,7 +8,7 @@ Add Our Team
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Add Our Team</h1>
     </div>
-    <form method="post" action="{{ route('ourteam.store') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('ourteam.update') }}" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id" value="{{ $ourteam->id }}">
         <input type="hidden" name="old_image" value="{{ $ourteam->image }}">
@@ -26,7 +26,7 @@ Add Our Team
             <input type="text" class="form-control" name="position" id="position" value="{{ $ourteam->position }}">
         </div>
         <div class="text-xs-right">
-            <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New">					 
+            <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update">					 
         </div>
     </form>
 </main>
