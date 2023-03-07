@@ -16,7 +16,7 @@ Add Membership
         </div>
         <div class="mb-3">
             <label for="desc" class="form-label">Description</label>
-            <input type="text" class="form-control" name="desc" id="desc">
+            <textarea class="form-control" name="desc" id="desc" rows="3"></textarea>
         </div>
         <div class="text-xs-right">
             <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New">					 
