@@ -32,11 +32,12 @@
             </div>
             <nav class="navbar">
                 <ul class="navbar_menu">
+                <li ><a href="/promo" style="color:red; font-weight:bold;">Promo</a></li>
                 <li><a href="{{ url('/') }}">Home</a></li>
                 <li><a href="/#aboutus">About Us</a></li>
                 <li><a href="/#ourproduct">Our Product</a></li>
                 <li><a href="/#contactus">Contact</a></li>
-                <li><a href="/#membership">Membership</a></li>
+                <li><a href="/membership">Membership</a></li>
                 </ul>
                 <div class="hamburger_container">
                 <i class="fa fa-bars" aria-hidden="true"></i>
@@ -57,6 +58,7 @@
         <li class="menu_item"><a href="/#ourproduct">Our Product</a></li>
         <li class="menu_item"><a href="/#contactus">Contact</a></li>
         <li class="menu_item"><a href="/#membership">Membership</a></li>
+        <li ><a href="/promo" style="color:red; font-weight:bold;">Promo</a></li>
         <li class="menu_item"><a href="#">Shopping With Us</a></li>
       </ul>
     </div>

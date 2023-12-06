@@ -69,5 +69,15 @@
             Slider background
         </a>
     </li>
+    <li>
+        <a href="{{ route('promo.all') }}" class="nav-link text-white {{ ($prefix == '/promo')? 'active':'' }}">
+            Coupon & Promo
+        </a>
+    </li>
+    <li>
+        <a href="{{ route('customer.all') }}" class="nav-link text-white {{ ($prefix == '/customer')? 'active':'' }}">
+            Customer Database
+        </a>
+    </li>
     </ul>
 </div>

@@ -13,10 +13,22 @@ use App\Models\OurTeam;
 use App\Models\BGImage;
 use App\Models\Membership;
 use App\Models\MembershipFE;
+use App\Models\Promo;
+use App\Models\Coupon;
 
 use Image;
 use Auth;
 use Carbon\Carbon;
+
+
+use App\Exports\CustomerExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Requests\StoreCustomerRequest;
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MembershipMail;
+use App\Mail\PromoMail;
+use App\Mail\PromoMail2;
 
 class BackendController extends Controller
 {
@@ -922,6 +934,110 @@ class BackendController extends Controller
 
         return redirect()->back()->with($notification);
 
+    }
+
+    //Promo
+    Public function PromoView(){
+
+        $promo = Coupon::latest()->get();
+        return view('admin.menu.promo.view', compact('promo'));
+
+    }
+
+    Public function PromoAdd(){
+
+        return view('admin.menu.promo.add');
+
+    }
+
+    Public function PromoStore(Request $request){
+        
+        $promo_id = Coupon::insertGetId([
+            'name' => $request->name,
+            'description' => $request->description,
+            'created_at' => Carbon::now(),
+    	]);
+
+	    $notification = array(
+			'message' => 'Promo Inserted Successfully',
+			'alert-type' => 'success'
+		);
+
+		return redirect()->route('promo.all')->with($notification);
+
+    }
+
+    Public function PromoEdit($id){
+
+        $promo = Coupon::findOrFail($id);
+        return view('admin.menu.promo.edit', compact('promo'));
+        
+    }
+
+    Public function PromoUpdate(Request $request){
+
+        $promo_id = $request->id;
+
+        Coupon::findOrFail($promo_id)->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'updated_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Promo Updated Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->route('promo.all')->with($notification);
+        
+    }
+
+    Public function PromoDelete($id){
+
+        Coupon::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Promo Deleted Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
+        
+    }
+
+    Public function PromoSend(Request $request){
+
+        $customerDetail = Promo::get();
+        $promoDetail = coupon::where('id',$request->id)->get();
+        $data = [
+            'name' => Coupon::where('id',$request->id)->get('name'),
+            'description' => Coupon::where('id',$request->id)->get('description'),
+        ];
+
+        foreach ($customerDetail as $row) {
+            // dd($row['email']);
+            Mail::to($row['email'])->send(new PromoMail($promoDetail));
+        }
+
+        $notification = array(
+            'message' => 'Coupon/Promo Successfully Send',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    Public function CustView(){
+
+        $customerDetail = Promo::latest()->get();
+        return view('admin.menu.custDB.viewCustomer', compact('customerDetail'))->with('no', 1);
+
+    }
+
+    public function getCustData()
+    {
+        return Excel::download(new CustomerExport, 'customers.xlsx');
     }
 
 }

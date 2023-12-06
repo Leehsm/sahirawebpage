@@ -13,6 +13,8 @@ use App\Models\OurTeam;
 use App\Models\Membership;
 use App\Models\MembershipFE;
 use App\Models\BGImage;
+use App\Models\Promo;
+use App\Models\Coupon;
 
 use Image;
 use Auth;
@@ -20,6 +22,7 @@ use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MembershipMail;
+use App\Mail\PromoMail;
 
 class FrontendController extends Controller
 {
@@ -115,16 +118,16 @@ class FrontendController extends Controller
 
         // dd($phone);
 
-        if (Membership::where('phonenum', '=', $request->phone) && Membership::where('email', '=', $request->email)->exists()){
-
+        if (Membership::where('phonenum', '===', $request->phone)->exists() && Membership::where('email', '===', $request->email)->exists()){
+            //dd('1');
             $notification = array(
                 'message' => 'Email and phone number already exist',
                 'alert-type' => 'warning'
             );
             return redirect()->back()->with($notification);
 
-        }elseif(Membership::where('phonenum', '=', $request->phone) || Membership::where('email', '=', $request->email)->exists()){
-        
+        }elseif(Membership::where('phonenum', '==', $request->phone)->exists() || Membership::where('email', '==', $request->email)->exists()){
+            //dd('2');
             $notification = array(
                 'message' => 'Email or phone number already exist',
                 'alert-type' => 'warning'
@@ -132,10 +135,10 @@ class FrontendController extends Controller
             return redirect()->back()->with($notification);
         
         }else{
-
+            //dd('3');
             $membership_id = Membership::insertGetId([
                 'name' => $request->name,
-                'birthdate' => $request->dob,
+                // 'birthdate' => $request->dob,
                 'phonenum' => $request->phone,
                 'email' => $request->email,
                 'address' => $request->address,
@@ -194,4 +197,60 @@ class FrontendController extends Controller
         
     }
 
+    Public function promo(){
+
+        return view('frontend.menu.promo');
+
+    }
+
+    Public function promoStore(Request $request){
+
+        if (Promo::where('phone', '=', $request->phone)->exists() && Promo::where('email', '=', $request->email)->exists()){
+            
+            $notification = array(
+                'message' => 'Email and phone number already exist',
+                'alert-type' => 'warning'
+            );
+            return redirect()->back()->with($notification);
+
+        }elseif(Promo::where('phone', '=', $request->phone)->exists() || Promo::where('email', '=', $request->email)->exists()){
+        
+            $notification = array(
+                'message' => 'Email or phone number already exist',
+                'alert-type' => 'warning'
+            );
+            return redirect()->back()->with($notification);
+        
+        }else{
+            // dd($request->phone,Promo::where('phone', '=', $request->phone)->get(),Promo::where('email', '=', $request->email)->get());
+            $membership_id = Promo::insertGetId([
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'address' => $request->address,
+                'created_at' => Carbon::now(),
+            ]);
+    
+            $data = [
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'address' => $request->address,
+                'created_at' => Carbon::now(),
+            ];
+            
+            $promoDetail = coupon::where('id','1')->get();
+
+            //send Email
+            Mail::to($request->email)->send(new PromoMail($promoDetail));
+    
+            $notification = array(
+                'message' => 'Promo Successfully sent to your email',
+                'alert-type' => 'success'
+            );
+    
+            return redirect()->back()->with($notification);
+        }
+
+    }
 }
