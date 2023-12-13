@@ -128,6 +128,28 @@ Route::middleware(['auth:admin'])->group(function(){
         Route::get('/delete/{id}', [BackendController::class, 'OurTeamDelete'])->name('ourteam.delete');
     });
 
+    //Promo
+    Route::prefix('promo')->group(function(){
+        Route::get('/view', [BackendController::class, 'PromoView'])->name('promo.all');
+        Route::get('/add', [BackendController::class, 'PromoAdd'])->name('promo.add');
+        Route::post('/store', [BackendController::class, 'PromoStore'])->name('promo.store');
+        Route::get('/edit/{id}', [BackendController::class, 'PromoEdit'])->name('promo.edit');
+        Route::post('/update', [BackendController::class, 'PromoUpdate'])->name('promo.update');
+        Route::get('/delete/{id}', [BackendController::class, 'PromoDelete'])->name('promo.delete');
+        
+        Route::get('/send/{id}', [BackendController::class, 'PromoSend'])->name('promo.send');
+    });
+
+    //Promo
+    Route::prefix('customer')->group(function(){
+        
+        Route::get('/viewCustomer', [BackendController::class, 'CustView'])->name('customer.all');
+        Route::resource('customer', BackendController::class);
+        Route::get('/exportCustomer',[BackendController::class, 'getCustData'])->name('customer.export');
+    });
+
+
+
 });
 
 
@@ -147,3 +169,5 @@ Route::post('membership/register', [FrontendController::class, 'membershipRegist
 Route::get('/faq', [FrontendController::class, 'faq'])->name('faq');
 Route::get('/blog', [FrontendController::class, 'blog'])->name('blog');
 Route::get('/readblog/{id}', [FrontendController::class, 'readblog'])->name('readblog');
+Route::get('/promo', [FrontendController::class, 'promo'])->name('promo');
+Route::post('/getPromo', [FrontendController::class, 'promoStore'])->name('get-promo');
